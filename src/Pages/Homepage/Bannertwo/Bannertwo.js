@@ -17,7 +17,6 @@ const Bannertwo = () => {
                             </div>
                         ),
                         },
-                        
                     ]}
                     className="aspect-[2/1]"
                     />
