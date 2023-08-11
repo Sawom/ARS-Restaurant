@@ -30,7 +30,7 @@ const MenuItem = () => {
             </div>
             {/* button */}
             <div className='text-center '>
-                    <button className="btn btn-outline  border-4 mt-6">View Full Menu</button>
+                <button className="btn btn-outline  border-4 mt-6">View Full Menu</button>
             </div>
             
             
