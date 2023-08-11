@@ -22,7 +22,7 @@ const Footer = () => {
                 </footer>
                 <footer className="footer footer-center p-4 bg-black text-white">
                     <div>
-                        <p>Copyright {currentYear} © CulinaryCloud. All rights reserved.</p>
+                        <p>Copyright {currentYear} © Abdur Rashid Sawom. All rights reserved.</p>
                     </div>
                 </footer>
             </div>
