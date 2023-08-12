@@ -1,0 +1,8 @@
+.navColor{
+    color: white;
+    font-weight: bold;
+}
+.navColor:hover{
+    font-weight: bold;
+    color: yellow;
+}

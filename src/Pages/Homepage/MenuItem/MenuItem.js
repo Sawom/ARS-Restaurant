@@ -17,9 +17,10 @@ const MenuItem = () => {
     return (
         <div className='container mt-10 mx-auto'>
             {/* heading */}
-            <div>
-
-            </div>
+            <section className='text-center mb-10 ' > 
+                <p className='text-blue-400 font-bold' >---Check it out---</p> <br />
+                <p className='text-xl   ' > <span className=' py-4 border-y-4 uppercase' > FROM OUR MENU </span> </p>
+            </section>
             {/* data showing */}
             <div className='grid md:grid-cols-2 lg:grid-cols-2 gap-8' >
                 {

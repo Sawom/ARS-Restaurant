@@ -13,6 +13,10 @@ const FoodCategory = () => {
     return (
         <div className='container mx-auto' >
             {/* swiper from react awesome component */}
+             <section className='text-center mb-10 ' > 
+                <p className='text-blue-400 font-bold' >---From 11:00am to 10:00pm---</p> <br />
+                <p className='text-xl   ' > <span className=' py-4 border-y-4 uppercase' > Order Online </span> </p>
+             </section>
              <Swiper 
         slidesPerView={4}
         spaceBetween={30}
