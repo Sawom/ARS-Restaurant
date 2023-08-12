@@ -11,7 +11,7 @@ import img6 from '../../../assets/home/b6.png';
 const Banner = () => {
     return (
         <div  >
-            <Carousel className='' showArrows={true} autoPlay={true}  >
+            <Carousel className='' showArrows={true} autoPlay={true} >
                 {/* carousel from react  awesome component */}
                 <div >
                     <img alt='food' src={img1} />
