@@ -5,6 +5,7 @@ import Bannertwo from '../Bannertwo/Bannertwo';
 import MenuItem from '../MenuItem/MenuItem';
 import CallUs from '../CallUs/CallUs';
 import BannerThree from '../BannerThree/BannerThree';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <MenuItem></MenuItem>
             <CallUs></CallUs>
             <BannerThree></BannerThree>
+            <Testimonials></Testimonials>
         </div>
     );
 };
