@@ -3,6 +3,11 @@ import TopBanner from '../TopBanner/TopBanner';
 import useMenu from '../../../Hooks/useMenu';
 import MenuCategory from '../MenuCategory/MenuCategory';
 import OrderFoodButton from '../OrderFoodButton/OrderFoodButton';
+import DessertBanner from '../DessertBanner/DessertBanner';
+import PizzaBanner from '../PizzaBanner/PizzaBanner';
+import SaladBanner from '../SaladBanner/SaladBanner';
+import SoupBanner from '../SoupBanner/SoupBanner';
+import DrinksBanner from '../DrinksBanner/DrinksBanner';
 
 const OurMenu = () => {
     const [menu] = useMenu([]);
@@ -23,15 +28,25 @@ const OurMenu = () => {
                 <MenuCategory foodItem={offered} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
                 <p>dessert</p>
+                <DessertBanner></DessertBanner>
                 <MenuCategory foodItem={dessert} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
                 pizza
+                <PizzaBanner></PizzaBanner>
                 <MenuCategory foodItem={pizza} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
                 salad
+                <SaladBanner></SaladBanner>
                 <MenuCategory foodItem={salad} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
                 soup
+                <SoupBanner></SoupBanner>
                 <MenuCategory foodItem={soup} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
                 drinks
+                <DrinksBanner></DrinksBanner>
                 <MenuCategory foodItem={drinks} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
             </div>
             
         </div>

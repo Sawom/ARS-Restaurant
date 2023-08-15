@@ -1,0 +1,23 @@
+.topBanner{
+    background-image: url('../../../assets/menu/banner3.jpg');
+}
+
+.dessertBanner{
+    background-image: url('../../../assets/menu/dessert.jpeg');
+}
+
+.pizzaBanner{
+    background-image: url('../../../assets/menu/pizza.jpg');
+}
+
+.saladBanner{
+    background-image: url('../../../assets/menu/salad.jpg');
+}
+
+.soupBanner{
+    background-image: url('../../../assets/menu/soup.jpg');
+}
+
+.drinksBanner{
+    background-image: url('../../../assets/menu/drinks.jpg');
+}
