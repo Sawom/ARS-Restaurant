@@ -2,6 +2,7 @@ import React from 'react';
 import TopBanner from '../TopBanner/TopBanner';
 import useMenu from '../../../Hooks/useMenu';
 import MenuCategory from '../MenuCategory/MenuCategory';
+import OrderFoodButton from '../OrderFoodButton/OrderFoodButton';
 
 const OurMenu = () => {
     const [menu] = useMenu([]);
@@ -20,6 +21,7 @@ const OurMenu = () => {
                 {/* load and filter menu */}
                 <p>todays offer</p>
                 <MenuCategory foodItem={offered} ></MenuCategory>
+                <OrderFoodButton></OrderFoodButton> 
                 <p>dessert</p>
                 <MenuCategory foodItem={dessert} ></MenuCategory>
                 pizza
