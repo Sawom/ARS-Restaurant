@@ -9,7 +9,8 @@ import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
-        <div className=''>
+        <div>
+            {/* home page er shb kichu ei jaygay load kortechi */}
             <Banner></Banner>
             <FoodCategory></FoodCategory>
             <Bannertwo></Bannertwo>

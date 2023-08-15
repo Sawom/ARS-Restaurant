@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Showitem from '../Showitem/Showitem';
+import useMenu from '../../../Hooks/useMenu';
 
 const MenuItem = () => {
-    const[menu , setMenu] = useState([]);
-
-    {/* food menu are loaded here which category is popular */}
-    useEffect( ()=>{
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const foodData =   data.filter(  (fooditem)=> fooditem.category === 'popular' )
-                setMenu(foodData)
-        }  )
-    },[])
+    const[menu] = useMenu([]);
+    // usemenu hook theke anche data gula. fetch hoiche usemenu hook e.
+    // pore filter kore popular gula ekhane dekhaiche
+    const popular = menu.filter( (item)=> item.category === 'popular' )
 
     return (
         <div className='container mt-10 mx-auto'>
@@ -24,7 +18,7 @@ const MenuItem = () => {
             {/* data showing */}
             <div className='grid md:grid-cols-2 lg:grid-cols-2 gap-8' >
                 {
-                    menu.map( (item)=> <Showitem
+                    popular.map( (item)=> <Showitem
                         key={item._id} item={item}
                     ></Showitem> )
                 }
