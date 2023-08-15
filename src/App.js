@@ -10,7 +10,7 @@ import OurMenu from './Pages/OurMenuPage/OurMenu/OurMenu';
 function App() {
   return (
     <div >
-      <div className="  mx-auto" >
+      <div className="mx-auto" >
           <BrowserRouter>
               <Header></Header>
               <Routes>
