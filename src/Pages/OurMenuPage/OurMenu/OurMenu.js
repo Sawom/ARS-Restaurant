@@ -24,26 +24,30 @@ const OurMenu = () => {
             <TopBanner></TopBanner>
             <div className='container mx-auto'>
                 {/* load and filter menu */}
-                <p>todays offer</p>
+                {/* offered menu */}
+                <section className='text-center mb-10 ' > 
+                    <p className='text-blue-400 font-bold' >---Don't miss---</p> <br />
+                    <p className='text-xl   ' > <span className=' py-4 border-y-4 uppercase' > today's offer </span> </p>
+                </section>
                 <MenuCategory foodItem={offered} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
-                <p>dessert</p>
+                {/* dessert menu */}
                 <DessertBanner></DessertBanner>
                 <MenuCategory foodItem={dessert} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
-                pizza
+                {/* pizza menu */}
                 <PizzaBanner></PizzaBanner>
                 <MenuCategory foodItem={pizza} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
-                salad
+                {/* salad menu */}
                 <SaladBanner></SaladBanner>
                 <MenuCategory foodItem={salad} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
-                soup
+                {/* soup menu */}
                 <SoupBanner></SoupBanner>
                 <MenuCategory foodItem={soup} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 
-                drinks
+                {/* drinks menu */}
                 <DrinksBanner></DrinksBanner>
                 <MenuCategory foodItem={drinks} ></MenuCategory>
                 <OrderFoodButton></OrderFoodButton> 

@@ -4,7 +4,7 @@ import './Banner.css';
 const TopBanner = () => {
     return (
         <div>
-            <div className="hero lg:h-[550px] topBanner">
+            <div className="hero lg:h-[550px] mb-8 topBanner">
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md mb-8">
