@@ -15,6 +15,7 @@ const Header = () => {
                 <ul tabIndex={0} className="menu menu-sm rounded  bg-opacity-60 bg-black dropdown-content mt-3 z-[1] p-2   ">
                     <li > <Link  to='/home'> <span className='text-white navColor'  > Home </span> </Link> </li>
                     <li> <Link  to='/ourmenu'> <span className='text-white navColor'  > Our Menu </span>  </Link> </li>
+                    <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
                 </ul>
                 </div>
                 <img src={logo} style={{width: '60px' ,text:'white'}} alt="" />
@@ -25,6 +26,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-2">
                     <li> <Link  to='/home'> <span className='text-white navColor'  > Home </span> </Link> </li>
                     <li> <Link  to='/ourmenu'> <span className='text-white navColor'  > Our Menu </span>  </Link> </li>
+                    <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
                 </ul>
             </div>
             <div className="navbar-end">
