@@ -17,6 +17,8 @@ function App() {
                 <Route path='/' element={ <Home></Home> } ></Route>
                 <Route path='/home' element={ <Home></Home> } ></Route>
                 <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
+                {/* dynamic route. order shop theke menu wise different tab e show korbo. 
+                our shop component e ache. */}
                 <Route path='/ourshop' element={ <OurShop></OurShop> } ></Route>
               </Routes>
               <Footer></Footer>
