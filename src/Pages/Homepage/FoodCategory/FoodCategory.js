@@ -29,23 +29,23 @@ const FoodCategory = () => {
       >
         <SwiperSlide>
             <img src={slide1} alt="food" />
-            <p className='text-2xl text-center uppercase -mt-12 text-green-500 font-bold' > Salad</p>
+            <p className='text-xl text-center uppercase -mt-12 text-green-500 font-bold' > Salad</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide2} alt="food" />
-            <p className='text-2xl text-center uppercase -mt-12 text-green-500 font-bold' > Pizza</p>
+            <p className='text-xl text-center uppercase -mt-12 text-green-500 font-bold' > Pizza</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide3} alt="food" />
-            <p className='text-2xl text-center uppercase -mt-12 text-green-500 font-bold' > Soup</p>
+            <p className='text-xl text-center uppercase -mt-12 text-green-500 font-bold' > Soup</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide4} alt="food" />
-            <p className='text-2xl text-center uppercase -mt-12 text-green-500 font-bold' > desert</p>
+            <p className='text-xl text-center uppercase -mt-12 text-green-500 font-bold' > desert</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide5} alt="food" />
-            <p className='text-2xl text-center uppercase -mt-12 text-green-500 font-bold' > vegetable</p>
+            <p className='text-xl text-center uppercase -mt-12 text-green-500 font-bold' > vegetable</p>
         </SwiperSlide>
         
       </Swiper>

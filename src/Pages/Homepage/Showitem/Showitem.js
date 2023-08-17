@@ -2,6 +2,7 @@ import React from 'react';
 
 const Showitem = ({item}) => {
     const{name,recipe,image,category,price} = item;
+    
     return (
         <div className=' flex space-x-3'>
             <img style={{borderRadius:'0px 200px 200px 200px'}} src={image} className='w-[110px]'  alt="food" />

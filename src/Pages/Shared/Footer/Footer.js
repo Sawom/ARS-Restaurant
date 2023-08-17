@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
-        <div >
+        <div className='mt-8' >
             <div className=' footer-center'>
                 <footer style={{backgroundColor: '#111827'}} className="footer p-10 bg-neutral text-neutral-content">
                     {/* 1st part */}
