@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/home/logo.png';
 import './Header.css';
 
@@ -32,6 +32,7 @@ const Header = () => {
             <div className="navbar-end">
                 <Link to='/login' className="btn btn-ghost">Login</Link>
             </div>
+            <Outlet></Outlet>
         </div>
     );
 };

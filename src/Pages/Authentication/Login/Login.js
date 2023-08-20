@@ -6,7 +6,7 @@ const Login = () => {
     return (
         <div>
            <div className="hero container  mx-auto bg-base-100 min-h-screen ">
-                <div className="hero-content  shadow-2xl flex-col lg:flex-row-reverse">
+                <div className="hero-content  shadow-2xl flex-col lg:flex-row">
                     {/* 1st div */}
                     <div className="text-center mt-10 lg:text-left">
                         <img src={img2} className="py-6" alt="" />
@@ -15,17 +15,19 @@ const Login = () => {
                     <div className="card flex-shrink-0 w-full max-w-sm ">
                         <div className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Login</h1>
+                            {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="email" className="input input-bordered" />
+                            <input type="text" name="email" placeholder="email" className="input input-bordered" />
                             </div>
+                            {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered" />
+                            <input type="text" name="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
