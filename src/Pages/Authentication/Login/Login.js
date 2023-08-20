@@ -1,5 +1,6 @@
 import React from 'react';
 import img2 from '../../../assets/others/authentication2.png';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -30,8 +31,9 @@ const Login = () => {
                             </label>
                             </div>
                             <div className="form-control mt-6">
-                            <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
+                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
                             </div>
+                            <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
                         </div>
                     </div>
                 </div>
