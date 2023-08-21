@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
-import { Link, useLocation, useNavigate,} from 'react-router-dom';
+import { Link, useLocation, } from 'react-router-dom';
 import useFirebase from '../useFirebase/useFirebase';
 
 const Login = () => {
     const[loginData, setLoginData] = useState({});
     const {user, isLoading, authError, signInWithgoogle} = useFirebase();
-    const location = useLocation();
-    const history = useNavigate() ;
+    
 
     // google sign in
     const handleGoogleSignIn = () =>{
-        signInWithgoogle( );
+        signInWithgoogle();
     }
 
     return (

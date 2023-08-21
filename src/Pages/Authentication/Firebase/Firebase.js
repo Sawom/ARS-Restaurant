@@ -7,10 +7,11 @@ const firebaseConfig = {
   projectId: "arsrestaurant-d5e39",
   storageBucket: "arsrestaurant-d5e39.appspot.com",
   messagingSenderId: "261966925157",
-  appId: "1:261966925157:web:dcf3bec2cefa451bb3a58c",
-  measurementId: "G-ZK428WHXHX"
+  appId: "1:261966925157:web:33dac17150ee0ab2b3a58c",
+  measurementId: "G-BQWQGZ900L"
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+
 // const analytics = getAnalytics(app);
+export const app = initializeApp(firebaseConfig);

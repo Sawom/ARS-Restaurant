@@ -1,8 +1,32 @@
 import React from 'react';
 import img1 from '../../../assets/others/authentication2.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import useFirebase from '../useFirebase/useFirebase';
 
 const Register = () => {
+    const [loginData, setLoginData] = useState({});
+    const {user, registerUser, authError } = useFirebase();
+
+    // data taken from input field
+    const handleInputData = (event) =>{
+        const field = event.target.name;
+        const value = event.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    } // end  handleInputData
+
+    // submit form
+    const handleLoginFormSubmit = (event) =>{
+        if(loginData.password !== loginData.password2){
+            alert('Your password did not match');
+            return;
+        }
+        registerUser(loginData.email, loginData.password, loginData.name);
+        event.preventDefault();
+    } 
+
     return (
         <div className='' >
             <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -13,28 +37,28 @@ const Register = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <div className="card-body">
+                        <form onSubmit={handleLoginFormSubmit} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Sign Up</h1>
                             {/* name */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="name" name="name" className="input input-bordered" />
+                            <input type="text" onBlur={handleInputData} placeholder="name" name="name" className="input input-bordered" />
                             </div>
                             {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" name="email" className="input input-bordered" />
+                            <input type="email" onBlur={handleInputData} placeholder="email" name="email" className="input input-bordered" />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" name="password" className="input input-bordered" />
+                            <input type="password" onBlur={handleInputData} placeholder="password" name="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -44,7 +68,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Retype Password</span>
                             </label>
-                            <input type="password" name="password2" placeholder="retype password" className="input input-bordered" />
+                            <input type="password" onBlur={handleInputData} name="password2" placeholder="retype password" className="input input-bordered" />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -53,7 +77,7 @@ const Register = () => {
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
                             </div>
                             <p>Already registered? <Link to='/login'> <span className='font-bold' >Go to LogIn</span>  </Link> </p>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
