@@ -1,13 +1,13 @@
 import React,  { useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider,  signInWithEmailAndPassword,  signInWithPopup, signOut, updateProfile} from "firebase/auth";
-import { app } from '../Firebase/firebase';
-
-const auth = getAuth(app);
+import initializeFirebase from '../Firebase/Firebase.init';
+initializeFirebase();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true); // later use
     const [authError, setAuthError] = useState('');
+    const auth = getAuth();
 
     // register user
     const registerUser = (name,email, password) =>{
@@ -49,7 +49,7 @@ const useFirebase = () => {
     } // end login user
 
     // google sign in
-    const signInWithgoogle = (location , history)=>{
+    const signInWithgoogle = ()=>{
         const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
             .then((result) => {
@@ -69,13 +69,15 @@ const useFirebase = () => {
     }  // end google sign in
 
     // logout
-    const logout = ()=> {
-        signOut(auth).then(() => {
-        // Sign-out successful.
-        }).catch((error) => {
-        // An error happened.
-        }) 
-        .finally( ()=>{  } );
+    const logoutUser = ()=> {
+        signOut(auth)
+            .then(() => {
+
+            }).catch((error) => {
+            // An error happened.
+            })
+            .finally( ()=>{  } );
+        
     } // end logout
 
     return { 
@@ -83,9 +85,9 @@ const useFirebase = () => {
         isLoading,
         authError,
         signInWithgoogle,
-        logout,
+        logoutUser,
         registerUser,
-        loginUser
+        loginUser,
     }
 };
 
