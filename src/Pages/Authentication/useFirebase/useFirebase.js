@@ -15,14 +15,13 @@ const useFirebase = () => {
             .then((userCredential) => {
                 setAuthError('');
                 const user = userCredential.user;
-
                 updateProfile(auth.currentUser, {
                         displayName: name
                         }).then(() => {
                         }).catch((error) => {
                         
                 });
-                // 
+                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -39,6 +38,7 @@ const useFirebase = () => {
                 // Signed in 
                 const user = userCredential.user;
                 setAuthError('');
+                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -46,8 +46,7 @@ const useFirebase = () => {
                 setAuthError(errorMessage);
             })
             .finally(() => { });
-
-    }
+    } // end login user
 
     // google sign in
     const signInWithgoogle = (location , history)=>{

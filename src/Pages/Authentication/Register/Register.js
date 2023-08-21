@@ -17,8 +17,8 @@ const Register = () => {
         setLoginData(newLoginData);
     } // end  handleInputData
 
-    // submit form
-    const handleLoginFormSubmit = (event) =>{
+    // submit register form
+    const handleRegisterFormSubmit = (event) =>{
         if(loginData.password !== loginData.password2){
             alert('Your password did not match');
             return;
@@ -37,7 +37,7 @@ const Register = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <form onSubmit={handleLoginFormSubmit} className="card-body">
+                        <form onSubmit={handleRegisterFormSubmit} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Sign Up</h1>
                             {/* name */}
                             <div className="form-control">

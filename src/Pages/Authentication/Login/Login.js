@@ -5,8 +5,22 @@ import useFirebase from '../useFirebase/useFirebase';
 
 const Login = () => {
     const[loginData, setLoginData] = useState({});
-    const {user, isLoading, authError, signInWithgoogle} = useFirebase();
+    const {user, isLoading, authError, signInWithgoogle, loginUser} = useFirebase();
     
+    // data taken from input field
+    const handleInputData = (event) =>{
+        const field = event.target.name;
+        const value = event.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    } // end handleInputData
+
+    // login form submit
+    const handleLoginFormSubmit = (event) =>{
+        loginUser(loginData.email, loginData.password);
+        event.preventDefault();
+    }
 
     // google sign in
     const handleGoogleSignIn = () =>{
@@ -23,21 +37,21 @@ const Login = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <div className="card-body">
+                        <form onSubmit={handleLoginFormSubmit} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Login</h1>
                             {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" name="email" placeholder="email" className="input input-bordered" />
+                            <input onBlur={handleInputData} type="text" name="email" placeholder="email" className="input input-bordered" />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name="password" placeholder="password" className="input input-bordered" />
+                            <input onBlur={handleInputData} type="text" name="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -51,7 +65,7 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">sign with google</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div> 
