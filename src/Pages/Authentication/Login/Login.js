@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate,} from 'react-router-dom';
+import useFirebase from '../useFirebase/useFirebase';
 
 const Login = () => {
+    const[loginData, setLoginData] = useState({});
+    const {user, isLoading, authError, signInWithgoogle} = useFirebase();
+    const location = useLocation();
+    const history = useNavigate() ;
+
+    // google sign in
+    const handleGoogleSignIn = () =>{
+        signInWithgoogle( );
+    }
+
     return (
         <div>
            <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -36,6 +47,11 @@ const Login = () => {
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
                             </div>
                             <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
+                            <p className='mx-auto' >Or sign in with</p>
+                            {/* google sign in button */}
+                            <div className="form-control mt-6">
+                                <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">sign with google</button>
+                            </div>
                         </div>
                     </div>
                 </div>
