@@ -29,6 +29,9 @@ const Header = () => {
                     <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
                 </ul>
             </div>
+            <div className='navbar-end' >
+                <Link className='btn btn-ghost' to='/login' >Login</Link>
+            </div>
             
             <Outlet></Outlet>
         </div>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
-import { Link,  } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 
 
 const Login = () => {
-   
+    
+
     return (
         <div>
            <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -39,10 +40,8 @@ const Login = () => {
                             </div>
                             <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
-                            {/* google sign in button */}
-                            <div className="form-control mt-6">
-                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">sign with google</button>
-                            </div>
+                           {/* google login button */}
+                           <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
                         </form>
                     </div>
                 </div>
