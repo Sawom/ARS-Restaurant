@@ -4,6 +4,7 @@ import logo from '../../../assets/home/logo.png';
 import './Header.css';
 
 const Header = () => {
+    
     return (
         <div className="navbar px-10 fixed z-10 bg-opacity-60 bg-black text-white">
             <div className="navbar-start">
@@ -31,6 +32,13 @@ const Header = () => {
             </div>
             <div className='navbar-end' >
                 <Link className='btn btn-ghost' to='/login' >Login</Link>
+                {/* {
+                    user?.email ? 
+                    <button className='btn btn-ghost' > Logout </button> 
+                    :
+                    <Link className='btn btn-ghost' to='/login' >Login</Link>
+                } */}
+                
             </div>
             
             <Outlet></Outlet>

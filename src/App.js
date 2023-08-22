@@ -13,18 +13,18 @@ function App() {
   return (
     <div >
       <div className="mx-auto" >
-          <BrowserRouter>
-              <Header></Header>
-              <Routes>
-                <Route path='/' element={ <Home></Home> } ></Route>
-                <Route path='/home' element={ <Home></Home> } ></Route>
-                <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
-                <Route path='/ourshop' element={ <OurShop></OurShop> } ></Route>
-                <Route path='/register' element={ <Register></Register> }  ></Route>
-                <Route path='/login' element={ <Login></Login> } ></Route>
-              </Routes>
-              <Footer></Footer>
-          </BrowserRouter>
+            <BrowserRouter>
+                <Header></Header>
+                <Routes>
+                  <Route path='/' element={ <Home></Home> } ></Route>
+                  <Route path='/home' element={ <Home></Home> } ></Route>
+                  <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
+                  <Route path='/ourshop' element={ <OurShop></OurShop> } ></Route>
+                  <Route path='/register' element={ <Register></Register> }  ></Route>
+                  <Route path='/login' element={ <Login></Login> } ></Route>
+                </Routes>
+                <Footer></Footer>
+            </BrowserRouter>
       </div>
       
     </div>
