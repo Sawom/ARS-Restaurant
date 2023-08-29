@@ -7,12 +7,14 @@ import OurMenu from './Pages/OurMenuPage/OurMenu/OurMenu';
 import OurShop from './Pages/OurShopPage/OurShop/OurShop';
 import Register from './Pages/Authentication/Register/Register';
 import Login from './Pages/Authentication/Login/Login';
+import AuthProvider from './Pages/Authentication/AuthProvider/AuthProvider';
 
 function App() {
   return (
     <div >
       <div className="mx-auto" >
-            <BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
               <Header></Header>
                 <Routes>
                   <Route path='/' element={ <Home></Home> } ></Route>
@@ -24,12 +26,10 @@ function App() {
                 </Routes>
               <Footer></Footer>
             </BrowserRouter>
-        
-            
+        </AuthProvider>   
       </div>
-      
     </div>
-    
+
   );
 }
 

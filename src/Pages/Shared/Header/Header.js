@@ -2,11 +2,17 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/home/logo.png';
 import './Header.css';
+import useAuth from '../../Authentication/useAuth/useAuth';
 
 const Header = () => {
+    const {user, logoutUser} = useAuth();
+
+    const logoutFunction =() =>{
+        logoutUser();
+    }
     
     return (
-        <div className="navbar px-10 fixed z-10 bg-opacity-60 bg-black text-white">
+        <div className="navbar px-3 fixed z-10 bg-opacity-60 bg-black text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -31,14 +37,12 @@ const Header = () => {
                 </ul>
             </div>
             <div className='navbar-end' >
-                <Link className='btn btn-ghost' to='/login' >Login</Link>
-                {/* {
+                {
                     user?.email ? 
-                    <button className='btn btn-ghost' > Logout </button> 
+                    <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button> 
                     :
                     <Link className='btn btn-ghost' to='/login' >Login</Link>
-                } */}
-                
+                }
             </div>
             
             <Outlet></Outlet>

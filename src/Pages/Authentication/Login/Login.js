@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
 import { Link  } from 'react-router-dom';
-
-
+import useAuth from '../useAuth/useAuth';
 
 const Login = () => {
+    const {user, signInWithGoogle } = useAuth();
+
+    // login with email
+    const handleLoginSubmit = e => {
+        e.preventDefault();
+    }
+
+    // google login
+    const handleGoogleSignIn = () => {
+        signInWithGoogle();
+    }
+
     return (
         <div>
            <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -15,7 +26,7 @@ const Login = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <form  className="card-body">
+                        <form onSubmit={handleLoginSubmit} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Login</h1>
                             {/* email */}
                             <div className="form-control">
@@ -40,7 +51,7 @@ const Login = () => {
                             <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}
-                           <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
+                           <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
                         </form>
                     </div>
                 </div>
