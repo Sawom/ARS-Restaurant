@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
 import { Link  } from 'react-router-dom';
 
+
+
 const Login = () => {
-    
     return (
         <div>
            <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -39,7 +40,7 @@ const Login = () => {
                             <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}
-                           <button  style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
+                           <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
                         </form>
                     </div>
                 </div>
