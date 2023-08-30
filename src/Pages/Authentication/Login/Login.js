@@ -1,54 +1,93 @@
 import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
-import { Link, useLocation, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
-    const {user, signInWithGoogle, loginUser, authError } = useAuth();
-    const [loginData, setLoginData] = useState({});
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const {user, signInWithGoogle } = useAuth();
+    const auth = getAuth();
+
     const navigate = useNavigate();
-    
     // navigate
-    if(user?.email){
+    if(user){
         navigate('/ourshop');
     }
 
-    const auth = getAuth();
+    // email
+    const handleEmail = event => {
+        setEmail(event.target.value);
+    }
 
-    
+    // password
+    const handlePassword = event => {
+        setPassword(event.target.value);
+    }
 
+    // handle login
+    const handleLogin = (email, password)=>{
+        signInWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+                // sweet alert
+                Swal.fire({
+                    title: 'Login Successful!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                }) // end alert
+            })
+            .catch((error) => {
+               setError(error.message);
+            });
+    }
 
+    // user login
+    const handleUserLogin = event =>{
+        event.preventDefault();
+        handleLogin(email, password);
+        
+    }
 
-
-    // email , password er data collect er jonno 
-    const handleOnBlurLogin = e =>{
-        const field = e.target.name;
-        const value = e.target.value;
-        const newLoginData = {...loginData};
-        newLoginData[field] = value;
-        setLoginData(newLoginData);
-    } // end
-
-     // reset password
+    // reset password
     const resetPassword = async () => {
-        if (loginData.email) {
-            await sendPasswordResetEmail(auth, loginData.email)
+        if (email) {
+            await sendPasswordResetEmail(auth, email)
             .then(result =>{})
-            alert('email sent');
+            // sweet alert
+            Swal.fire({
+                title: 'Email sent. Check your email.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
         }
         else{
-            alert('please enter your email address');
+            Swal.fire({
+                title: 'Please enter your email address',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
         }
     }
 
-    // login with email
-    const handleLoginSubmit = e => {
-        e.preventDefault();
-        loginUser(loginData.email, loginData.password);
-    }
-
-    // google login
+    // google login 
     const handleGoogleSignIn = () => {
         signInWithGoogle();
     }
@@ -63,25 +102,27 @@ const Login = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <form onSubmit={handleLoginSubmit} className="card-body">
+                        <form onSubmit={handleUserLogin} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Login</h1>
                             {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" onBlur={handleOnBlurLogin} name="email" placeholder="email" className="input input-bordered" required />
+                            <input type="text" onBlur={handleEmail}  name="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input  type="password" onBlur={handleOnBlurLogin} name="password" placeholder="password" className="input input-bordered" required />
+                            <input  type="password" onBlur={handlePassword}  name="password" placeholder="password" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
                             </div>
+                            {/* error */}
+                            <p className='text-red-600' > {error} </p>
                             <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}

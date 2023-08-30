@@ -3,46 +3,104 @@ import img1 from '../../../assets/others/authentication2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import { useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
-    const [loginData , setLoginData] = useState({});
-    const { user, registerUser, authError} = useAuth();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [ confirmpass, setConfirmpass] = useState('');
+    const [ error, setError] = useState('');
+    const auth = getAuth();
+    const { user} = useAuth();
+
     const navigate = useNavigate();
-    
     // navigate
-    if(user?.email){
-        navigate('/ourshop');
+    if(user){
+        navigate('/home');
     }
 
-    // email , password er data collect er jonno 
-    const handleOnBlurRegister = e =>{
-        const field = e.target.name;
-        const value = e.target.value;
-        const newLoginData = {...loginData};
-        newLoginData[field] = value;
-        setLoginData(newLoginData);
-    } // end
+    // name
+    const handleName = event =>{
+        setName(event.target.value);
+    }
 
-    // user register function
-    const handleRegisterSubmit = e =>{
-        // e.preventdefault(); eta shurutei dea lage nahole form reload mare r kaj kore na.
-        
-        if(loginData.password !== loginData.password2){
-            alert('your password did not match');
-            return;
-        }
-        if(loginData.password.length < 6){
-            alert('Password Must be at least 6 characters long.');
-            return;
-        }
-        if (!/(?=.*[A-Z].*[A-Z])/.test(loginData.password)) {
-            alert('Password Must contain 2 upper case');
-            return;
-        }
-        registerUser(loginData.email, loginData.password, loginData.name )
-        e.preventdefault();
-    }    // end user register function
+    // email
+    const handleEmail = event =>{
+        setEmail(event.target.value);
+    }
 
+    // password
+    const handlePassword = event =>{
+        setPassword(event.target.value);
+    }
+
+    // confirm password
+    const handleConfirmpass = event =>{
+        setConfirmpass(event.target.value);
+    }
+
+    // verify email
+    const verifyEmail = () =>{
+        sendEmailVerification(auth.currentUser)
+        .then((result)=>{
+            
+        })
+    }
+
+    // register new user
+    const registerNewUser = (email,password) =>{
+        createUserWithEmailAndPassword(auth, email , password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            setError('');
+            verifyEmail();
+            setUserName();
+            // sweet alert
+            Swal.fire({
+                title: 'Now you are registered. Congratulations!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+                }) // end alert
+        })
+        .catch(error => {
+        setError(error.message);
+      })
+    }
+
+    // set user name
+    const setUserName = () => {
+        const auth = getAuth();
+        updateProfile(auth.currentUser, { displayName: name })
+        .then(result => {  
+            
+         })
+    }
+    
+    // create user
+    const handleRegistration = event =>{
+        event.preventDefault();
+         if(password !== confirmpass){
+            setError("Your password did not match! ");
+            return;
+        }
+        if(password.length < 6){
+            setError('Password Must be at least 6 characters long.');
+            return;
+        }
+        if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
+            setError('Password Must contain 2 upper case');
+            return;
+        }
+        registerNewUser(email, password);
+    }
+   
     return (
         <div className='' >
             <div className="hero container  mx-auto bg-base-100 min-h-screen ">
@@ -53,35 +111,38 @@ const Register = () => {
                     </div>
                     {/* 2nd div */}
                     <div className="card flex-shrink-0 w-full max-w-sm ">
-                        <form onSubmit={handleRegisterSubmit} className="card-body">
+                        <form onSubmit={handleRegistration} className="card-body">
                             <h1 className="text-3xl mt-8 mx-auto font-bold ">Sign Up</h1>
                             {/* name */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" onBlur={handleOnBlurRegister}  placeholder="name" name="name" className="input input-bordered" required />
+                            <input type="text" onBlur={handleName}  placeholder="name" name="name" className="input input-bordered" required />
                             </div>
                             {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" onBlur={handleOnBlurRegister} placeholder="email" name="email" className="input input-bordered" required />
+                            <input type="email" onBlur={handleEmail} placeholder="email" name="email" className="input input-bordered" required />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" onBlur={handleOnBlurRegister} placeholder="password" name="password" className="input input-bordered" required />
+                            <input type="password" onBlur={handlePassword} placeholder="password" name="password" className="input input-bordered" required />
+                            <label className="label">
+                                <p> <small> *Password Must be at least 6 characters long and Password Must contain 2 upper case. </small> </p>
+                            </label>
                             </div>
                             {/* retype password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Retype Password</span>
                             </label>
-                            <input type="password" onBlur={handleOnBlurRegister} name="password2" placeholder="retype password" className="input input-bordered" required />
+                            <input type="password" onBlur={handleConfirmpass} name="password2" placeholder="retype password" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Register</button>
@@ -89,10 +150,9 @@ const Register = () => {
                             <p>Already registered? <Link to='/login'> <span className='font-bold' >Go to LogIn</span>  </Link> </p>
                             <br />
                             {/* error */}
-                            <p className='text-red-600'> {authError} </p>
+                            <p className='text-red-600' > {error} </p>
                         </form>
-                        {/* alert */}
-                        {user?.email &&  alert("User Created successfully!") } 
+
                     </div>
                 </div>
             </div>
