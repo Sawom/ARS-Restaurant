@@ -8,6 +8,7 @@ import OurShop from './Pages/OurShopPage/OurShop/OurShop';
 import Register from './Pages/Authentication/Register/Register';
 import Login from './Pages/Authentication/Login/Login';
 import AuthProvider from './Pages/Authentication/AuthProvider/AuthProvider';
+import PrivateRoute from './Pages/Authentication/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -20,7 +21,12 @@ function App() {
                   <Route path='/' element={ <Home></Home> } ></Route>
                   <Route path='/home' element={ <Home></Home> } ></Route>
                   <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
-                  <Route path='/ourshop' element={ <OurShop></OurShop> } ></Route>
+                  {/* private route */}
+                  <Route path='/ourshop' element={ 
+                  <PrivateRoute>
+                      <OurShop></OurShop>
+                  </PrivateRoute>  } ></Route>
+
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
                 </Routes>

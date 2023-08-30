@@ -1,12 +1,18 @@
 import React from 'react';
 import img1 from '../../../assets/others/authentication2.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import { useState } from 'react';
 
 const Register = () => {
     const [loginData , setLoginData] = useState({});
     const { user, registerUser, authError} = useAuth();
+    const navigate = useNavigate();
+    
+    // navigate
+    if(user?.email){
+        navigate('/ourshop');
+    }
 
     // email , password er data collect er jonno 
     const handleOnBlurRegister = e =>{
@@ -20,7 +26,7 @@ const Register = () => {
     // user register function
     const handleRegisterSubmit = e =>{
         // e.preventdefault(); eta shurutei dea lage nahole form reload mare r kaj kore na.
-        e.preventdefault();
+        
         if(loginData.password !== loginData.password2){
             alert('your password did not match');
             return;
@@ -34,6 +40,7 @@ const Register = () => {
             return;
         }
         registerUser(loginData.email, loginData.password, loginData.name )
+        e.preventdefault();
     }    // end user register function
 
     return (
@@ -68,9 +75,6 @@ const Register = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" onBlur={handleOnBlurRegister} placeholder="password" name="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                             </div>
                             {/* retype password */}
                             <div className="form-control">
@@ -78,19 +82,17 @@ const Register = () => {
                                 <span className="label-text">Retype Password</span>
                             </label>
                             <input type="password" onBlur={handleOnBlurRegister} name="password2" placeholder="retype password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                             </div>
                             <div className="form-control mt-6">
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Register</button>
                             </div>
                             <p>Already registered? <Link to='/login'> <span className='font-bold' >Go to LogIn</span>  </Link> </p>
+                            <br />
+                            {/* error */}
+                            <p className='text-red-600'> {authError} </p>
                         </form>
-                        
                         {/* alert */}
-                        {user?.email &&  alert("User Created successfully!") }
-                        {authError && alert({authError}) }
+                        {user?.email &&  alert("User Created successfully!") } 
                     </div>
                 </div>
             </div>

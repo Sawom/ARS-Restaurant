@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
-import { Link  } from 'react-router-dom';
+import { Link, useLocation, useNavigate  } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const Login = () => {
     const {user, signInWithGoogle, loginUser, authError } = useAuth();
     const [loginData, setLoginData] = useState({});
+    const navigate = useNavigate();
+    
+    // navigate
+    if(user?.email){
+        navigate('/ourshop');
+    }
+
     const auth = getAuth();
+
+    
+
+
+
 
     // email , password er data collect er jonno 
     const handleOnBlurLogin = e =>{
@@ -77,10 +89,7 @@ const Login = () => {
                            {/* reset password */}
                             <p >Forgot password? <button onClick={resetPassword} className='btn btn-link text-primary ' style={{textDecoration: 'none'}} > Reset Password </button>  </p>
                         </form>
-
-                        {/* alert */}
-                        {user?.email &&  alert("Login successfully!") }
-                        {authError && alert({authError}) }
+                        
                     </div>
                 </div>
             </div> 

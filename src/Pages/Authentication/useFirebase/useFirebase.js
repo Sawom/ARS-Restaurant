@@ -3,12 +3,14 @@ import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthState
 import initializeFirebase from '../Firebase/firebase.init';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 initializeFirebase();
 
 
 const useFirebase = () => {
     const [user,setUser] = useState({});
     const [authError, setAuthError] = useState('');
+     const [loading, setLoading] = useState(true);
 
     // const auth = getAuth(); eta google sign in , email register , login shb jaygay lage jonno ekbarei nichilam
     const auth = getAuth();
@@ -24,6 +26,17 @@ const useFirebase = () => {
                 const user = result.user;
                 setAuthError('');
                 console.log(user);
+                // sweet alert
+                Swal.fire({
+                    title: 'User Login Successful!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                    })
+                    // end alert
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
