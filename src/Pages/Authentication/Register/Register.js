@@ -17,7 +17,7 @@ const Register = () => {
 
     const navigate = useNavigate();
     // navigate
-    if(user){
+    if(user?.email){
         navigate('/home');
     }
 
@@ -44,9 +44,12 @@ const Register = () => {
     // verify email
     const verifyEmail = () =>{
         sendEmailVerification(auth.currentUser)
-        .then((result)=>{
+        .then(()=>{
             
         })
+        .catch((error) => {
+            setError(error.message);
+        });
     }
 
     // register new user
@@ -70,8 +73,8 @@ const Register = () => {
                 }) // end alert
         })
         .catch(error => {
-        setError(error.message);
-      })
+            setError(error.message);
+        })
     }
 
     // set user name
@@ -80,7 +83,10 @@ const Register = () => {
         updateProfile(auth.currentUser, { displayName: name })
         .then(result => {  
             
-         })
+        })
+        .catch((error) => {
+            setError(error.message);
+        });
     }
     
     // create user
@@ -147,7 +153,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Register</button>
                             </div>
-                            <p>Already registered? <Link to='/login'> <span className='font-bold' >Go to LogIn</span>  </Link> </p>
+                            <p>Already registered? <Link to='/login'> <span className='font-bold text-primary' >Go to LogIn</span>  </Link> </p>
                             <br />
                             {/* error */}
                             <p className='text-red-600' > {error} </p>

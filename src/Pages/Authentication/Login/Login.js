@@ -14,7 +14,7 @@ const Login = () => {
 
     const navigate = useNavigate();
     // navigate
-    if(user){
+    if(user?.email){
         navigate('/ourshop');
     }
 
@@ -51,28 +51,31 @@ const Login = () => {
             });
     }
 
-    // user login
+    // user login 
     const handleUserLogin = event =>{
         event.preventDefault();
         handleLogin(email, password);
-        
     }
 
     // reset password
     const resetPassword = async () => {
         if (email) {
             await sendPasswordResetEmail(auth, email)
-            .then(result =>{})
-            // sweet alert
-            Swal.fire({
-                title: 'Email sent. Check your email.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
+            .then(result =>{
+                 // sweet alert
+                Swal.fire({
+                    title: 'Email sent. Check your email.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
             })
+           .catch((error) => {
+               setError(error.message);
+            });
         }
         else{
             Swal.fire({
@@ -123,12 +126,12 @@ const Login = () => {
                             </div>
                             {/* error */}
                             <p className='text-red-600' > {error} </p>
-                            <p>New here? <Link to='/register'> <span className='font-bold' >Create a New Account</span>  </Link> </p>
+                            <p>New here? <Link to='/register'> <span className='font-bold text-primary' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}
                            <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
                            {/* reset password */}
-                            <p >Forgot password? <button onClick={resetPassword} className='btn btn-link text-primary ' style={{textDecoration: 'none'}} > Reset Password </button>  </p>
+                            <p >Forgot password? <button onClick={resetPassword} className='btn btn-link font-bold text-primary ' style={{textDecoration: 'none'}} > Reset Password </button>  </p>
                         </form>
                         
                     </div>
