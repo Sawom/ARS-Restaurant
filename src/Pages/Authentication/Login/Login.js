@@ -2,13 +2,38 @@ import React, { useState } from 'react';
 import img2 from '../../../assets/others/authentication2.png';
 import { Link  } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
 const Login = () => {
-    const {user, signInWithGoogle } = useAuth();
+    const {user, signInWithGoogle, loginUser, authError } = useAuth();
+    const [loginData, setLoginData] = useState({});
+    const auth = getAuth();
+
+    // email , password er data collect er jonno 
+    const handleOnBlurLogin = e =>{
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = {...loginData};
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    } // end
+
+     // reset password
+    const resetPassword = async () => {
+        if (loginData.email) {
+            await sendPasswordResetEmail(auth, loginData.email)
+            .then(result =>{})
+            alert('email sent');
+        }
+        else{
+            alert('please enter your email address');
+        }
+    }
 
     // login with email
     const handleLoginSubmit = e => {
         e.preventDefault();
+        loginUser(loginData.email, loginData.password);
     }
 
     // google login
@@ -33,17 +58,14 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" name="email" placeholder="email" className="input input-bordered" required />
+                            <input type="text" onBlur={handleOnBlurLogin} name="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input  type="text" name="password" placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+                            <input  type="password" onBlur={handleOnBlurLogin} name="password" placeholder="password" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
@@ -52,7 +74,13 @@ const Login = () => {
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}
                            <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
+                           {/* reset password */}
+                            <p >Forgot password? <button onClick={resetPassword} className='btn btn-link text-primary ' style={{textDecoration: 'none'}} > Reset Password </button>  </p>
                         </form>
+
+                        {/* alert */}
+                        {user?.email &&  alert("Login successfully!") }
+                        {authError && alert({authError}) }
                     </div>
                 </div>
             </div> 

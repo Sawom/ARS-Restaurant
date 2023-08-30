@@ -38,6 +38,7 @@ const useFirebase = () => {
                 .then((result) => {
                     const user = result.user;
                     setAuthError('');
+                    console.log(user); //
                     const newUser = { email, displayName: name };
                     setUser(newUser);
                     // update profile: set user name
@@ -64,12 +65,14 @@ const useFirebase = () => {
                     // Signed in 
                     const user = result.user;
                     setAuthError('');
+                    console.log(user)//
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     setAuthError(errorMessage);
                 });
+                
     }
 
     // observer if user signin or not
@@ -99,7 +102,8 @@ const useFirebase = () => {
             authError,
             signInWithGoogle,
             logoutUser,
-            registerUser
+            registerUser,
+            loginUser
         }
     );
 };

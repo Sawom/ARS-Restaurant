@@ -9,13 +9,13 @@ const Register = () => {
     const { user, registerUser, authError} = useAuth();
 
     // email , password er data collect er jonno 
-    const handleOnBlur = e =>{
+    const handleOnBlurRegister = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = {...loginData};
         newLoginData[field] = value;
         setLoginData(newLoginData);
-    }
+    } // end
 
     // user register function
     const handleRegisterSubmit = e =>{
@@ -53,21 +53,21 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" onBlur={handleOnBlur}  placeholder="name" name="name" className="input input-bordered" required />
+                            <input type="text" onBlur={handleOnBlurRegister}  placeholder="name" name="name" className="input input-bordered" required />
                             </div>
                             {/* email */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" onBlur={handleOnBlur} placeholder="email" name="email" className="input input-bordered" required />
+                            <input type="email" onBlur={handleOnBlurRegister} placeholder="email" name="email" className="input input-bordered" required />
                             </div>
                             {/* password */}
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" onBlur={handleOnBlur} placeholder="password" name="password" className="input input-bordered" required />
+                            <input type="password" onBlur={handleOnBlurRegister} placeholder="password" name="password" className="input input-bordered" required />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -77,7 +77,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Retype Password</span>
                             </label>
-                            <input type="password" onBlur={handleOnBlur} name="password2" placeholder="retype password" className="input input-bordered" required />
+                            <input type="password" onBlur={handleOnBlurRegister} name="password2" placeholder="retype password" className="input input-bordered" required />
                             <label className="label">
                                 <a href="" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -87,9 +87,10 @@ const Register = () => {
                             </div>
                             <p>Already registered? <Link to='/login'> <span className='font-bold' >Go to LogIn</span>  </Link> </p>
                         </form>
+                        
                         {/* alert */}
                         {user?.email &&  alert("User Created successfully!") }
-                    {authError && alert({authError}) }
+                        {authError && alert({authError}) }
                     </div>
                 </div>
             </div>
