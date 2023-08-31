@@ -1,7 +1,30 @@
 import React from 'react';
+import useAuth from '../../Authentication/useAuth/useAuth';
+import Swal from 'sweetalert2';
 
 const ShopCard = ({item}) => {
     const{name,recipe,image,category,price} = item;
+    const {user} = useAuth();
+
+    // add to cart function
+    const handleAddToCart = (item) =>{
+        console.log(item);
+        if(user){
+            fetch('http://localhost:5000/carts')
+            .then( res => res.json())
+            .then(data =>{
+                if(data.insertedId){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'add to cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                }
+            })
+        }
+    } 
 
     return (
         <div>

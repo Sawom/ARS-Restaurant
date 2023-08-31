@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../assets/home/logo.png';
+import { FaShoppingCart } from 'react-icons/fa';
 import './Header.css';
 import useAuth from '../../Authentication/useAuth/useAuth';
 
@@ -36,6 +37,16 @@ const Header = () => {
                     <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
                 </ul>
             </div>
+            
+            {/* add to cart */}
+            <li>
+                <Link to="/">
+                    <button className="btn gap-2">
+                        <FaShoppingCart></FaShoppingCart>
+                        <div className="badge badge-secondary">+0</div>
+                    </button>
+                </Link>
+            </li>
             <div className='navbar-end' >
                 {
                     user?.email ? 
