@@ -1,10 +1,15 @@
 import React from 'react';
 import useAuth from '../../Authentication/useAuth/useAuth';
 import Swal from 'sweetalert2';
+import useCart from '../../../Hooks/useCart';
 
 const ShopCard = ({item}) => {
     const{name,recipe,image,category,price, _id} = item;
     const {user} = useAuth();
+
+    // useCart theke refetch anchi. cz navbar e cart er item er count
+    //  ta update korar jonno
+    const [,refetch] = useCart()
 
     // add to cart function. att to cart button e click korle database e zabe
     const handleAddToCart = (item) =>{
@@ -23,6 +28,7 @@ const ShopCard = ({item}) => {
             .then( res => res.json())
             .then(data =>{
                 if(data.insertedId){
+                    refetch(); // refetch ta eikahne call dilam. count ta update korar jonno database theke.
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',

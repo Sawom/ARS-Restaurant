@@ -4,9 +4,13 @@ import logo from '../../../assets/home/logo.png';
 import { FaShoppingCart } from 'react-icons/fa';
 import './Header.css';
 import useAuth from '../../Authentication/useAuth/useAuth';
+import useCart from '../../../Hooks/useCart';
 
 const Header = () => {
     const {user, logoutUser} = useAuth();
+
+    // cart er length ta header e dekhabo
+    const [cart] = useCart();
 
     const logoutFunction =() =>{
         logoutUser();
@@ -43,10 +47,11 @@ const Header = () => {
                 <Link to="/">
                     <button className="btn gap-2">
                         <FaShoppingCart></FaShoppingCart>
-                        <div className="badge badge-secondary">+0</div>
+                        <div className="badge badge-secondary">+{cart?.length || 0 }</div>
                     </button>
                 </Link>
             </li>
+            {/*  end */}
             <div className='navbar-end' >
                 {
                     user?.email ? 
