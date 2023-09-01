@@ -9,14 +9,22 @@ import Register from './Pages/Authentication/Register/Register';
 import Login from './Pages/Authentication/Login/Login';
 import AuthProvider from './Pages/Authentication/AuthProvider/AuthProvider';
 import PrivateRoute from './Pages/Authentication/PrivateRoute/PrivateRoute';
+// tanstack query added
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div >
       <div className="mx-auto" >
         <AuthProvider>
-          <BrowserRouter>
-              <Header></Header>
+            <QueryClientProvider client={queryClient}>
+               <BrowserRouter>
+                <Header></Header>
                 <Routes>
                   <Route path='/' element={ <Home></Home> } ></Route>
                   <Route path='/home' element={ <Home></Home> } ></Route>
@@ -30,8 +38,9 @@ function App() {
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
                 </Routes>
-              <Footer></Footer>
-            </BrowserRouter>
+                <Footer></Footer>
+              </BrowserRouter>
+            </QueryClientProvider>
         </AuthProvider>   
       </div>
     </div>
