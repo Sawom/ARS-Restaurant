@@ -15,6 +15,7 @@ const DashboardPage = () => {
             <div className="drawer-side bg-[#D1A054]">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
                 <ul className="menu p-4 w-auto min-h-full  text-base-content">
+                    
                 {/* Sidebar content here */}
                 <li> <Link to='' style={{backgroundColor:'transparent',color:'white'}} > <FaHome></FaHome> User Home</Link></li>
                 <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
