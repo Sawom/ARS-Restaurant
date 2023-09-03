@@ -42,15 +42,15 @@ const Mycart = () => {
     const total = cart.reduce((sum,item)=> item.price + sum, 0)
     return (
         <div>
-            <div className='font-semibold h-[60px] flex justify-evenly items-center'>
-                <h3 className='text-2xl'> Total Items: {cart.length} </h3>
-                <h3 className='text-2xl'>Total price: {total} </h3>
+            <div className='font-semibold h-[80px] flex justify-evenly items-center'>
+                <h3 className='text-xl'> Total Items: {cart.length} </h3>
+                <h3 className='text-xl'>Total price: {total} </h3>
                 <button className="btn btn-outline  border-4 mt-6">Pay</button>
             </div>
         
             {/* table */}
-             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+             <div className="overflow-x-auto ">
+                <table className="table ">
                     {/* head */}
                     <thead>
                         <tr>

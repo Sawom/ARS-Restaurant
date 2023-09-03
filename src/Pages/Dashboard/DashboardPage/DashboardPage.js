@@ -8,16 +8,16 @@ const DashboardPage = () => {
 
     return (
         <div className=' ' >
-            <div className="drawer pt-20 lg:drawer-open md:drawer-open ">
+            <div className="drawer pt-20 lg:drawer-open md:drawer-open drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content  flex flex-col items-center justify-center">
                 {/* Page content here */}
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden md:hidden ">Open drawer</label>
+                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden md:hidden hidden">Open drawer</label>
                 <Outlet></Outlet>
             </div> 
             <div className="drawer-side bg-[#D1A054]">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                <ul className="menu p-4 w-auto min-h-full  text-base-content">
+                <ul className="menu p-2 w-auto min-h-full  text-base-content">
 
                 {/* Sidebar content here */}
                 <li> <Link to='' style={{backgroundColor:'transparent',color:'white'}} > <FaHome></FaHome> User Home</Link></li>
