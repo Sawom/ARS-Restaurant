@@ -55,7 +55,11 @@ const Header = () => {
             <div className='navbar-end' >
                 {
                     user?.email ? 
-                    <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button> 
+                    <div>
+                        {/* logout button and dashboard */}
+                        <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button>
+                        <Link className='btn btn-ghost' to='/dashboard' > Dashboard </Link>
+                    </div>
                     :
                     <Link className='btn btn-ghost' to='/login' >Login</Link>
                 }

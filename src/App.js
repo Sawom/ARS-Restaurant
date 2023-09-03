@@ -14,6 +14,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import DashboardPage from './Pages/Dashboard/DashboardPage/DashboardPage';
+import Mycart from './Pages/Dashboard/Mycart/Mycart';
 
 const queryClient = new QueryClient();
 
@@ -31,12 +33,18 @@ function App() {
                   <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
                   {/* private route */}
                   <Route path='/ourshop' element={ 
-                  <PrivateRoute>
-                      <OurShop></OurShop>
-                  </PrivateRoute>  } ></Route>
+                    <PrivateRoute>
+                        <OurShop></OurShop>
+                    </PrivateRoute>  } >
+                  </Route>
 
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
+                  {/* nested route */}
+                  <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
+                      <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
+                  </Route>
+                  
                 </Routes>
                 <Footer></Footer>
               </BrowserRouter>
