@@ -1,10 +1,44 @@
 import React from 'react';
 import useCart from '../../../Hooks/useCart';
 import { FaTrashAlt } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const Mycart = () => {
-    const [cart] = useCart();
+    const [cart,refetch] = useCart();
+
+    // ekhane item just ekta parameter. zeta diye delete korbo. onno nameo hoite pare parameter.
+    const handleDelete = (item) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${item._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
+
+
     // 0 initial value. sum er sathe add kortechi
+    // reduce method use korchi
     const total = cart.reduce((sum,item)=> item.price + sum, 0)
     return (
         <div>
@@ -47,7 +81,7 @@ const Mycart = () => {
                                 </td>
                                 <td className="text-end">${item.price}</td>
                                 <td>
-                                    <button  className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                             </tr>)
                         }
