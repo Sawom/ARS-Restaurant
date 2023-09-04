@@ -28,7 +28,8 @@ const ShopCard = ({item}) => {
             .then( res => res.json())
             .then(data =>{
                 if(data.insertedId){
-                    refetch(); // refetch ta eikahne call dilam. count ta update korar jonno database theke.
+                    refetch(); 
+                    // refetch ta eikahne call dilam. count ta update korar jonno database theke.
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',

@@ -53,24 +53,43 @@ const Register = () => {
     }
 
     // register new user
+    // post method
     const registerNewUser = (email,password) =>{
         createUserWithEmailAndPassword(auth, email , password)
         .then(result => {
             const user = result.user;
             console.log(user);
+            //
+            // user er shob info save korbo na. just email r password tai saveuser use korlam 
+            const saveUser = {name: name, email: email}
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(saveUser)
+            })
+                .then(res=> res.json())
+                .then(data =>{
+                    if(data.insertedId){
+                        // sweet alert
+                        Swal.fire({
+                            title: 'Now you are registered. Congratulations!',
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        }) // end alert
+                    }
+                })
+                // end post er kaj
+
             setError('');
             verifyEmail();
             setUserName();
-            // sweet alert
-            Swal.fire({
-                title: 'Now you are registered. Congratulations!',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-                }) // end alert
+            
         })
         .catch(error => {
             setError(error.message);
@@ -89,7 +108,7 @@ const Register = () => {
         });
     }
     
-    // create user
+    // create a register user
     const handleRegistration = event =>{
         event.preventDefault();
          if(password !== confirmpass){

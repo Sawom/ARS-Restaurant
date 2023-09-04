@@ -43,8 +43,8 @@ const Mycart = () => {
     return (
         <div>
             <div className='font-semibold h-[80px] flex justify-evenly items-center'>
-                <h3 className='text-xl'> Total Items: {cart.length} </h3>
-                <h3 className='text-xl'>Total price: {total} </h3>
+                <h3 className='text-xl'> Total Items: {cart.length} & </h3>
+                <h3 className='text-xl mx-1'> Total price: ${total} </h3>
                 <button className="btn btn-outline  border-4 mt-6">Pay</button>
             </div>
         
