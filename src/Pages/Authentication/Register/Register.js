@@ -59,7 +59,6 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            //
             // user er shob info save korbo na. just email r password tai saveuser use korlam 
             const saveUser = {name: name, email: email}
             fetch('http://localhost:5000/users', {
@@ -70,7 +69,7 @@ const Register = () => {
                 body: JSON.stringify(saveUser)
             })
                 .then(res=> res.json())
-                .then(data =>{
+                .then((data) =>{
                     if(data.insertedId){
                         // sweet alert
                         Swal.fire({

@@ -29,7 +29,7 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
-    // handle login
+    // handle login with email
     const handleLogin = (email, password)=>{
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {

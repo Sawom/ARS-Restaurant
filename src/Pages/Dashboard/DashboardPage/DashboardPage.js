@@ -8,6 +8,8 @@ const DashboardPage = () => {
     const [cart] = useCart();
 
     return (
+        // overflow-x-auto eta dear jnnoi dashboard page ta mobile responsive hoiche
+        // dashboard e nested route use korchi.
         <div className=' overflow-x-auto lg:pt-0 md:pt-0 pt-8' >
             <div className="drawer pt-20 lg:drawer-open md:drawer-open drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

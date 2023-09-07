@@ -8,6 +8,7 @@ initializeFirebase();
 
 const useFirebase = () => {
     const [user,setUser] = useState({});
+    const [ error, setError] = useState('');
     
     // const auth = getAuth(); eta google sign in e lagbe
     const auth = getAuth();
@@ -20,24 +21,39 @@ const useFirebase = () => {
             .then((result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
-                const user = result.user;
-                console.log(user);
-                // sweet alert. just ektu animation dhong.
-                Swal.fire({
-                    title: 'User Login Successful!',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
+
+                const loggedInUser = result.user;
+                // console.log(loggedInUser);
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
                     },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
+                        body: JSON.stringify(saveUser)
                     })
-                    // end alert
+                    .then(res => res.json() )
+                    .then( ()=>{
+                         // sweet alert. just ektu animation dhong.
+                        Swal.fire({
+                            title: 'User Login Successful!',
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                                }
+                            })
+                            // end alert
+                    } )
+                    setError('');
+               
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 const email = error.customData.email;
                 const credential = GoogleAuthProvider.credentialFromError(error);
+                setError(error.message);
             });
     }  // google login
 
