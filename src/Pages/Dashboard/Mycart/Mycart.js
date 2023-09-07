@@ -40,8 +40,9 @@ const Mycart = () => {
     // 0 initial value. sum er sathe add kortechi
     // reduce method use korchi
     const total = cart.reduce((sum,item)=> item.price + sum, 0)
+    
     return (
-        <div>
+        <div className='container'>
             <div className='font-semibold h-[80px] flex justify-evenly items-center'>
                 <h3 className='text-xl'> Total Items: {cart.length} & </h3>
                 <h3 className='text-xl mx-1'> Total price: ${total} </h3>
@@ -90,6 +91,7 @@ const Mycart = () => {
                 </table>
             </div>
             {/* table end */}
+            
         </div>
     );
 };

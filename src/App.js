@@ -40,7 +40,7 @@ function App() {
 
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
-                  {/* nested route */}
+                  {/* nested route dashboard*/}
                   <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
                       <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
                   </Route>

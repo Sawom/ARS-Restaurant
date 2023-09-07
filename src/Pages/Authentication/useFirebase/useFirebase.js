@@ -22,7 +22,7 @@ const useFirebase = () => {
                 const token = credential.accessToken;
                 const user = result.user;
                 console.log(user);
-                // sweet alert
+                // sweet alert. just ektu animation dhong.
                 Swal.fire({
                     title: 'User Login Successful!',
                     showClass: {
