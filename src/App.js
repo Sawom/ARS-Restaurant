@@ -16,6 +16,7 @@ import {
 } from '@tanstack/react-query';
 import DashboardPage from './Pages/Dashboard/DashboardPage/DashboardPage';
 import Mycart from './Pages/Dashboard/Mycart/Mycart';
+import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
 
 const queryClient = new QueryClient();
 
@@ -40,9 +41,10 @@ function App() {
 
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
-                  {/* nested route dashboard*/}
+                  {/* nested route in dashboard*/}
                   <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
                       <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
+                      <Route path='allusers' element={ <AllUsers></AllUsers> } ></Route>
                   </Route>
                   
                 </Routes>

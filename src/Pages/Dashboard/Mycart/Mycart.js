@@ -36,7 +36,6 @@ const Mycart = () => {
         })
     }
 
-
     // 0 initial value. sum er sathe add kortechi
     // reduce method use korchi
     const total = cart.reduce((sum,item)=> item.price + sum, 0)

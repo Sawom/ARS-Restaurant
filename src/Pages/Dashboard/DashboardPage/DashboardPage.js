@@ -7,6 +7,9 @@ import useCart from '../../../Hooks/useCart';
 const DashboardPage = () => {
     const [cart] = useCart();
 
+    // admin make
+    const isAdmin = true;
+
     return (
         // overflow-x-auto eta dear jnnoi dashboard page ta mobile responsive hoiche
         // dashboard e nested route use korchi.
@@ -21,20 +24,34 @@ const DashboardPage = () => {
             </div> 
             <div className="drawer-side bg-[#D1A054]">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                <ul className="menu p-1 w-auto min-h-full  text-base-content">
-
+                <ul className="menu p-2 w-auto min-h-full  text-base-content">
                 {/* Sidebar content here */}
-                <li> <Link to='' > <FaHome></FaHome> User Home</Link></li>
-                <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
-                <li> <Link to='' > <FaWallet></FaWallet> Payment History </Link> </li>
-                <li className='flex'> <Link to='/dashboard/mycart'> <FaShoppingCart></FaShoppingCart> My Cart 
-                    {/* cart er koyta item ache oita just dekhalam */}
-                    <div className="badge badge-secondary">+{cart?.length || 0 }</div>
-                </Link>
-                        
-                 </li>
+                {
+                    isAdmin ? <>
+                        {/* admin */}
+                        <li> <Link to='' > <FaHome></FaHome> Admin Home</Link></li>
+                        <li> <Link to='' > <FaUtensils></FaUtensils> Add an item </Link> </li>
+                        <li> <Link to='' > <FaWallet></FaWallet> Manage Items </Link> </li>
+                        <li> <Link to='/dashboard/allusers' > <FaUsers></FaUsers> All Users </Link> </li>
+                    </> : <>
+                        {/* user */}
+                        <li> <Link to='' > <FaHome></FaHome> User Home</Link></li>
+                        <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
+                        <li> <Link to='' > <FaWallet></FaWallet> Payment History </Link> </li>
+                        <li className='flex'> <Link to='/dashboard/mycart'> <FaShoppingCart></FaShoppingCart> My Cart 
+                            {/* cart er koyta item ache oita just dekhalam */}
+                            <div className="badge badge-secondary">+{cart?.length || 0 }</div>
+                        </Link>     
+                        </li>
+                    </>
+                }
+                
+                
                 {/* divider */}
                 <div className='divider' ></div>
+                        <li><Link to="/"><FaHome></FaHome> Home</Link> </li>
+                        <li><Link to=""> Our Menu</Link></li>
+                        <li><Link to="">Order Food</Link></li>
                 </ul>
             
             </div>
