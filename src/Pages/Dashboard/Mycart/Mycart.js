@@ -41,7 +41,7 @@ const Mycart = () => {
     const total = cart.reduce((sum,item)=> item.price + sum, 0)
     
     return (
-        <div className='container'>
+        <div className='container px-1'>
             <div className='font-semibold h-[80px] flex justify-evenly items-center'>
                 <h3 className='text-xl'> Total Items: {cart.length} & </h3>
                 <h3 className='text-xl mx-1'> Total price: ${total} </h3>
