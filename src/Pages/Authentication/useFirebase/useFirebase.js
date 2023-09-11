@@ -4,6 +4,7 @@ import initializeFirebase from '../Firebase/firebase.init';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 initializeFirebase();
 
 const useFirebase = () => {
@@ -57,13 +58,20 @@ const useFirebase = () => {
             });
     }  // google login
 
-    // observer if user signin or not
+    // observer if user signin or not.
+    // jwt token k ekhane set kore. token store korbo local storage e
     useEffect(()=>{
         const unsubscribed = onAuthStateChanged(auth, (user)=>{
                 if(user){
                     setUser(user);
+                    axios.post('http://localhost:5000/jwt', {email: user.email})
+                    .then(data =>{
+                        // console.log(data.data.token);
+                        localStorage.setItem('access-token', data.data.token)
+                    })
                 } else{
-                    setUser({})
+                    setUser({});
+                    localStorage.removeItem('access-token')
                 }
         });
         return () => unsubscribed;
