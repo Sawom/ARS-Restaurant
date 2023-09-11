@@ -26,15 +26,16 @@ const Mycart = () => {
                         if (data.deletedCount > 0) {
                             refetch();
                             Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
+                                'Cancelled!',
+                                'Your Order has Cancelled!',
                                 'success'
                             )
                         }
+
                     })
             }
         })
-    }
+    } // end
 
     // 0 initial value. sum er sathe add kortechi
     // reduce method use korchi
@@ -63,9 +64,7 @@ const Mycart = () => {
                     </thead>
                     <tbody>
                         {
-                            cart.map((item, index) => <tr
-                                key={item._id}
-                            >
+                            cart.map((item, index) => <tr key={item._id} >
                                 <td>
                                     {index + 1}
                                 </td>

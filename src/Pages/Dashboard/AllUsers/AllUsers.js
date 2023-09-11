@@ -1,24 +1,69 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     // tanstack query diye data load kortechi data base theke. tanstack use kori cz ekhane refetch kora zay .
-    // zeta manually kora lage na.
+    // zeta manually kora lage na. useQuery tanstack theke niche fetch korar jnno
     const {data: users = [], refetch } = useQuery(['users'], async() =>{
         const res = await fetch('http://localhost:5000/users')
         return res.json()
     })
 
     // make admin function
-    const handleMakeAdmin = id =>{
-        
-    }
+    const handleMakeAdmin = user =>{
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+    } // end make_admin
 
-    // user delete function
+    // user delete function (todo nijei kora lagbe)
     const handleDeleteUser = (user) =>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then( (result) =>{
+                if(result.isConfirmed){
+                    fetch(`http://localhost:5000/users/${user._id}`, {
+                        method: 'DELETE'
+                    } )
+                    .then( res => res.json() )
+                    .then( data =>{ 
+                        if( data.deletedCount > 0 ){
+                            refetch();
+                            Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: `${user.name} has deleted!`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
 
-    }
+                        }
+                    })
+                }
+        } ) 
+    }  // end
 
     return (
         <div className='container px-1'>
@@ -39,7 +84,7 @@ const AllUsers = () => {
                     <tbody>
                     {/* row 1 */}
                     {
-                        users.map((user, index) => <tr>
+                        users.map((user, index) => <tr key={user._id} >
                             <th>{index + 1}</th>
                             <td> {user.name} </td>
                             <td> {user.email} </td>
@@ -47,7 +92,7 @@ const AllUsers = () => {
                             <td>
                                 {/* user admin hole admin likha ta dekhabo ze beday admin. */}
                                 {
-                                    user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user._id)} className="btn btn-ghost bg-blue-700
+                                    user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-blue-700
                                       text-white"> <FaUserShield></FaUserShield> </button>
                                 }
                             </td>
