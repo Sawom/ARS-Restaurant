@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import useCart from '../../../Hooks/useCart';
+import useAdmin from '../../../Hooks/useAdmin';
 
 
 const DashboardPage = () => {
     const [cart] = useCart();
 
     // admin make
-    const isAdmin = true;
+    // const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         // overflow-x-auto eta dear jnnoi dashboard page ta mobile responsive hoiche
