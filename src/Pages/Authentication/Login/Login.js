@@ -32,7 +32,7 @@ const Login = () => {
 
     // handle login with email
     const handleLogin = (email, password)=>{
-        setLoading(true);
+        // setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;

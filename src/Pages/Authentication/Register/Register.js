@@ -56,7 +56,7 @@ const Register = () => {
     // register new user
     // post method
     const registerNewUser = (email,password) =>{
-        setLoading(true);
+        // setLoading(true);
         createUserWithEmailAndPassword(auth, email , password)
         .then(result => {
             const user = result.user;
