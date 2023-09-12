@@ -12,6 +12,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [ confirmpass, setConfirmpass] = useState('');
     const [ error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
     const auth = getAuth();
     const { user} = useAuth();
 
@@ -55,6 +56,7 @@ const Register = () => {
     // register new user
     // post method
     const registerNewUser = (email,password) =>{
+        setLoading(true);
         createUserWithEmailAndPassword(auth, email , password)
         .then(result => {
             const user = result.user;

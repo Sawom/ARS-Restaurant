@@ -10,12 +10,14 @@ initializeFirebase();
 const useFirebase = () => {
     const [user,setUser] = useState({});
     const [ error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
     
     // const auth = getAuth(); eta google sign in e lagbe
     const auth = getAuth();
 
     // google login
     const signInWithGoogle = () =>{
+        setLoading(true);
         const googleProvider = new GoogleAuthProvider();
         const auth = getAuth();
             signInWithPopup(auth, googleProvider)
@@ -61,13 +63,14 @@ const useFirebase = () => {
     // observer if user signin or not.
     // jwt token k ekhane set kore. token store korbo local storage e
     useEffect(()=>{
-        const unsubscribed = onAuthStateChanged(auth, (user)=>{
-                if(user){
-                    setUser(user);
-                    axios.post('http://localhost:5000/jwt', {email: user.email})
+        const unsubscribed = onAuthStateChanged(auth, (currentUser)=>{
+                if(currentUser){
+                    setUser(currentUser);
+                    axios.post('http://localhost:5000/jwt', {email: currentUser.email})
                     .then(data =>{
                         // console.log(data.data.token);
                         localStorage.setItem('access-token', data.data.token)
+                        setLoading(false);
                     })
                 } else{
                     setUser({});
@@ -79,6 +82,7 @@ const useFirebase = () => {
 
     // logout user 
     const logoutUser = () => {
+        setLoading(true);
         signOut(auth).then(() => {
             // Sign-out successful.
         }).catch((error) => {
@@ -91,6 +95,7 @@ const useFirebase = () => {
             user,
             signInWithGoogle,
             logoutUser,
+            loading,
         }
     );
 };

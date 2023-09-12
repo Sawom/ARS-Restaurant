@@ -2,13 +2,21 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const AllUsers = () => {
     // tanstack query diye data load kortechi data base theke. tanstack use kori cz ekhane refetch kora zay .
     // zeta manually kora lage na. useQuery tanstack theke niche fetch korar jnno
+    // jwt diye secure korar somoy useAxiosSecure use na korar jnno bishal error khaichi.
+    // ekhane jwt diye secure korar jonno 4ta kahini kora lage.
+    // 
+    const [axiosSecure] = useAxiosSecure(); //kahini> 1
     const {data: users = [], refetch } = useQuery(['users'], async() =>{
-        const res = await fetch('http://localhost:5000/users')
-        return res.json()
+        //kahini 2> axiosSecure.get
+        const res = await axiosSecure.get('/users')
+        //kahini 3> eta http://localhost:5000 base url. zeta axiosSecure e dea ache.
+        // to base url er part ta remove kore dite hobe
+        return res.data ; // kahini 4> axios nijei json data kore dey
     })
 
     // make admin function

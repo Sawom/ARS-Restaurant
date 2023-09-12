@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
     // google sign in
     const {user, signInWithGoogle } = useAuth();
     const auth = getAuth();
@@ -31,6 +32,7 @@ const Login = () => {
 
     // handle login with email
     const handleLogin = (email, password)=>{
+        setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
