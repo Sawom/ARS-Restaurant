@@ -63,7 +63,7 @@ const useFirebase = () => {
     // observer if user signin or not.
     // jwt token k ekhane set kore. token store korbo local storage e
     useEffect(()=>{
-        const unsubscribed = onAuthStateChanged(auth, (currentUser)=>{
+        const unsubscribed = onAuthStateChanged(auth, currentUser=>{
                 if(currentUser){
                     setUser(currentUser);
                     axios.post('http://localhost:5000/jwt', {email: currentUser.email})

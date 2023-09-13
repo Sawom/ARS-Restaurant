@@ -17,6 +17,8 @@ import {
 import DashboardPage from './Pages/Dashboard/DashboardPage/DashboardPage';
 import Mycart from './Pages/Dashboard/Mycart/Mycart';
 import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
+import AddItem from './Pages/Dashboard/AddItem/AddItem';
+import AdminRoute from './Pages/Dashboard/AdminRoute/AdminRoute';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,12 @@ function App() {
                   <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
                       <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
                       <Route path='allusers' element={ <AllUsers></AllUsers> } ></Route>
+                      {/* admin route */}
+                      <Route path='additem' element={
+                        <AdminRoute>
+                            <AddItem></AddItem>
+                        </AdminRoute>
+                          } ></Route>
                   </Route>
                   
                 </Routes>

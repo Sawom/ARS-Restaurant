@@ -32,7 +32,7 @@ const DashboardPage = () => {
                     isAdmin ? <>
                         {/* admin */}
                         <li> <Link to='' > <FaHome></FaHome> Admin Home</Link></li>
-                        <li> <Link to='' > <FaUtensils></FaUtensils> Add an item </Link> </li>
+                        <li> <Link to='/dashboard/additem' > <FaUtensils></FaUtensils> Add an item </Link> </li>
                         <li> <Link to='' > <FaWallet></FaWallet> Manage Items </Link> </li>
                         <li> <Link to='/dashboard/allusers' > <FaUsers></FaUsers> All Users </Link> </li>
                     </> : <>
