@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../Pages/Authentication/useAuth/useAuth';
 
 
-
 const useAxiosSecure = () => {
   const { logoutUser } = useAuth(); 
   const navigate = useNavigate(); 
