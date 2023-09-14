@@ -8,7 +8,8 @@ const AddItem = () => {
     const { register, handleSubmit, reset } = useForm();
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=8646fdb5383b816f8a5e181a1d0fdd77` 
     
-    // {...register("price", { required: true })}, react hook form e ei format e thakbe
+    // {...register("price", { required: true })}, react hook form e ei format e thakbe. 
+    // otherwise data zay na. missing thake
 
     // img upload function
     const onSubmit = data => {
@@ -25,7 +26,7 @@ const AddItem = () => {
             if(imgResponse.success){
                 const imgURL = imgResponse.data.display_url;
                 const {name, price, category, recipe} = data;
-                const newItem = {name, price: parseFloat(price), category, recipe, image:imgURL}
+                const newItem = {name, recipe, image:imgURL, category, price: parseFloat(price)  }
                 console.log(newItem)
                 axiosSecure.post('/menu', newItem)
                 .then(data => {
