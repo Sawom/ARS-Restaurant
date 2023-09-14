@@ -13,6 +13,7 @@ const useAxiosSecure = () => {
   baseURL: 'http://localhost:5000', 
 });
 
+  // interceptors from axios
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');
