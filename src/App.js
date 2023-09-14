@@ -19,6 +19,7 @@ import Mycart from './Pages/Dashboard/Mycart/Mycart';
 import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
 import AddItem from './Pages/Dashboard/AddItem/AddItem';
 import AdminRoute from './Pages/Dashboard/AdminRoute/AdminRoute';
+import ManageItems from './Pages/Dashboard/ManageItems/ManageItems';
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,12 @@ function App() {
                             <AddItem></AddItem>
                         </AdminRoute>
                           } ></Route>
+                      {/* manage item */}
+                      <Route path='manageitem' element={
+                        <AdminRoute>
+                          <ManageItems></ManageItems>
+                        </AdminRoute>
+                      } ></Route>
                   </Route>
                   
                 </Routes>
