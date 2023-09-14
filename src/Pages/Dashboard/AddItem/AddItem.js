@@ -1,13 +1,49 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from "sweetalert2";
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+
+const img_hosting_token = '8646fdb5383b816f8a5e181a1d0fdd77';
 
 const AddItem = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    
+    const { register, handleSubmit, reset } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=8646fdb5383b816f8a5e181a1d0fdd77` ;
+    const [axiosSecure] = useAxiosSecure();
+
+    // img upload function
     const onSubmit = data => {
-        console.log(data);
-    }
-    console.log(errors);
+        const formData = new FormData();
+        formData.append('image', data.image[0])
+        
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res=> res.json())
+        .then(imgResponse =>{
+            if(imgResponse.success){
+                const imgUrl = imgResponse.data.display_url;
+                const {name, price, category, recipe} = data;
+                const newItem = {name, price: parseFloat(price), category, recipe, image:imgUrl}
+                console.log('newitem = ',newItem);
+                axiosSecure.post('/menu', newItem)
+                .then(data =>{
+                    console.log('after posting', data.data);
+                    if(data.data.insertedId){
+                        // reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Item added successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }
+                })
+            }
+        })
+    };
+    // console.log(errors);
 
     return (
         <div className='container mx-auto'>
@@ -65,7 +101,7 @@ const AddItem = () => {
                     <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered file-input-ghost w-full " required />
                 </div>
                 {/* submit button */}
-                <button className="btn btn-outline  border-4 mt-6">Add Item</button>
+                <button className="btn btn-outline  border-4 mt-6"  type="submit">Add Item</button>
             </form>
         </div>
     );
