@@ -15,11 +15,11 @@ const useMenu = ()=>{
     //     } )
     // },[])
 
-    
+
     // axios use kori nai tai res.json() use kora lage.
     // axios use korle json e convert e kore dey tai json kora lage na
     // useQuery use korlam cz refetch kora lagbe pore tai.
-    const {data: menu = [], isLoading: loading} = useQuery({
+    const {data: menu = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['menu'],
         queryFn: async() =>{
             const res = await fetch('http://localhost:5000/menu');
@@ -27,6 +27,6 @@ const useMenu = ()=>{
         }
     })
 
-    return[menu, loading]
+    return[menu, loading, refetch]
 }
 export default useMenu;
