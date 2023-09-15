@@ -39,7 +39,7 @@ const DashboardPage = () => {
                         {/* user */}
                         <li> <Link to='' > <FaHome></FaHome> User Home</Link></li>
                         <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
-                        <li> <Link to='' > <FaWallet></FaWallet> Payment History </Link> </li>
+                        <li> <Link to='/dashboard/payment' > <FaWallet></FaWallet> Payment </Link> </li>
                         <li className='flex'> <Link to='/dashboard/mycart'> <FaShoppingCart></FaShoppingCart> My Cart 
                             {/* cart er koyta item ache oita just dekhalam */}
                             <div className="badge badge-secondary">+{cart?.length || 0 }</div>

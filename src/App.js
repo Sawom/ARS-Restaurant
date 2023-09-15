@@ -20,6 +20,7 @@ import AllUsers from './Pages/Dashboard/AllUsers/AllUsers';
 import AddItem from './Pages/Dashboard/AddItem/AddItem';
 import AdminRoute from './Pages/Dashboard/AdminRoute/AdminRoute';
 import ManageItems from './Pages/Dashboard/ManageItems/ManageItems';
+import Payment from './Pages/Dashboard/Payment/Payment';
 
 const queryClient = new QueryClient();
 
@@ -41,13 +42,14 @@ function App() {
                         <OurShop></OurShop>
                     </PrivateRoute>  } >
                   </Route>
-
+                  
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
                   {/* nested route in dashboard*/}
                   <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
                       <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
                       <Route path='allusers' element={ <AllUsers></AllUsers> } ></Route>
+                      <Route path='payment' element={ <Payment></Payment> } ></Route>
                       {/* admin route */}
                       <Route path='additem' element={
                         <AdminRoute>
