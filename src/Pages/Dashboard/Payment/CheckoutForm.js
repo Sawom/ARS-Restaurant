@@ -2,8 +2,9 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../Authentication/useAuth/useAuth';
+import './CheckoutForm.css';
 
-const CheckoutForm = ({price}) => {
+const CheckoutForm = ({price, cart}) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user} = useAuth();
@@ -21,37 +22,32 @@ const CheckoutForm = ({price}) => {
                     setClientSecret(res.data.clientSecret);
                 })
         }
-    }, [])
+    }, [price, axiosSecure])
 
-
+    // payment done howar pore cart er element shob gula remove kore dibe.
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
-        return;
+            return
         }
 
-        // Get a reference to a mounted CardElement. Elements knows how
-        // to find your CardElement because there can only ever be one of
-        // each type of element.
         const card = elements.getElement(CardElement);
-
         if (card === null) {
-            return;
+            return
         }
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
+
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
 
-        if(error){
-            // console.log('error ',error);
+        if (error) {
+            console.log('error', error)
             setCardError(error.message);
         }
-        else{
-            // console.log('error ',paymentMethod);
+        else {
             setCardError('');
+            // console.log('payment method', paymentMethod)
         }
 
         setProcessing(true)
@@ -69,15 +65,35 @@ const CheckoutForm = ({price}) => {
             },
         );
 
-        if(confirmError){
-            console.log(confirmError)
+        if (confirmError) {
+            console.log(confirmError);
         }
 
+        console.log('payment intent', paymentIntent)
         setProcessing(false)
-        if(paymentIntent.status === 'succeeded' ){
-            setTransactionId(paymentMethod.id);
-            const transactionId = paymentIntent.id;
+        if (paymentIntent.status === 'succeeded') {
+            setTransactionId(paymentIntent.id);
+            // save payment information to the server
+            const payment = {
+                email: user?.email,
+                transactionId: paymentIntent.id,
+                price,
+                date: new Date(),
+                quantity: cart.length,
+                cartItems: cart.map(item => item._id),
+                menuItems: cart.map(item => item.menuItemId),
+                status: 'service pending',
+                itemNames: cart.map(item => item.name)
+            }
+            axiosSecure.post('/payments', payment)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        // display confirm
+                    }
+                })
         }
+
 
     }
 
