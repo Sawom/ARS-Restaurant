@@ -29,7 +29,7 @@ const CheckoutForm = () => {
         <div>
            {/* checkout form nicher link theke */}
             {/* https://github.com/stripe/react-stripe-js/blob/master/examples/hooks/0-Card-Minimal.js */}
-             <form onSubmit={handleSubmit}>
+             <form className="w-2/3 m-8" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                     style: {
