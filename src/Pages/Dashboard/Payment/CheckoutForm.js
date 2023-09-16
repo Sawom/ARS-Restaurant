@@ -10,13 +10,18 @@ const CheckoutForm = ({price}) => {
     const [axiosSecure] = useAxiosSecure();
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState('');
 
-    useEffect(()=>{
-        axiosSecure.post('create-payment-intent', {price})
-        .then(res =>{
-            setClientSecret(res.data.clientSecret);
-        })
-    }, [price, axiosSecure])
+    useEffect(() => {
+        if (price > 0) {
+            axiosSecure.post('/create-payment-intent', { price })
+                .then(res => {
+                    console.log(res.data.clientSecret)
+                    setClientSecret(res.data.clientSecret);
+                })
+        }
+    }, [])
 
 
     const handleSubmit = async (event) => {
@@ -41,13 +46,15 @@ const CheckoutForm = ({price}) => {
         })
 
         if(error){
-            console.log('error ',error);
+            // console.log('error ',error);
             setCardError(error.message);
         }
         else{
-            console.log('error ',paymentMethod);
+            // console.log('error ',paymentMethod);
             setCardError('');
         }
+
+        setProcessing(true)
 
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
@@ -64,6 +71,12 @@ const CheckoutForm = ({price}) => {
 
         if(confirmError){
             console.log(confirmError)
+        }
+
+        setProcessing(false)
+        if(paymentIntent.status === 'succeeded' ){
+            setTransactionId(paymentMethod.id);
+            const transactionId = paymentIntent.id;
         }
 
     }
@@ -90,13 +103,13 @@ const CheckoutForm = ({price}) => {
                     },
                     }}
                 />
-                <button type="submit" className='btn btn-outline btn-sm  border-4 mt-6'
-                 disabled={!stripe ||  !clientSecret}>
+                <button className='btn btn-outline btn-sm  border-4 mt-6' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
             </form> 
             {/* show error */}
             {cardError && <p className='text-red-600 ml-8'> {cardError} </p> }
+            {transactionId && <p className='text-green-500'> Transaction complete with transactionId: {transactionId} </p> }
         </div>
     );
 };
