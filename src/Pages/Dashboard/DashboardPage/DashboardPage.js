@@ -31,13 +31,13 @@ const DashboardPage = () => {
                 {
                     isAdmin ? <>
                         {/* admin */}
-                        <li> <Link to='' > <FaHome></FaHome> Admin Home</Link></li>
+                        <li> <Link to='/dashboard/adminhome' > <FaHome></FaHome> Admin Home</Link></li>
                         <li> <Link to='/dashboard/additem' > <FaUtensils></FaUtensils> Add an item </Link> </li>
                         <li> <Link to='/dashboard/manageitem' > <FaWallet></FaWallet> Manage Items </Link> </li>
                         <li> <Link to='/dashboard/allusers' > <FaUsers></FaUsers> All Users </Link> </li>
                     </> : <>
                         {/* user */}
-                        <li> <Link to='' > <FaHome></FaHome> User Home</Link></li>
+                        <li> <Link to='/dashboard/userhome' > <FaHome></FaHome> User Home</Link></li>
                         <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
                         <li> <Link to='/dashboard/payment' > <FaWallet></FaWallet> Payment </Link> </li>
                         <li className='flex'> <Link to='/dashboard/mycart'> <FaShoppingCart></FaShoppingCart> My Cart 

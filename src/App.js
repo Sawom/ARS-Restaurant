@@ -21,6 +21,9 @@ import AddItem from './Pages/Dashboard/AddItem/AddItem';
 import AdminRoute from './Pages/Dashboard/AdminRoute/AdminRoute';
 import ManageItems from './Pages/Dashboard/ManageItems/ManageItems';
 import Payment from './Pages/Dashboard/Payment/Payment';
+import UserHome from './Pages/Dashboard/UserHome/UserHome' ;
+import AdminHome from './Pages/Dashboard/AdminHome/AdminHome';
+
 
 const queryClient = new QueryClient();
 
@@ -36,6 +39,7 @@ function App() {
                   <Route path='/' element={ <Home></Home> } ></Route>
                   <Route path='/home' element={ <Home></Home> } ></Route>
                   <Route path='/ourmenu' element={ <OurMenu></OurMenu> } ></Route>
+
                   {/* private route */}
                   <Route path='/ourshop' element={ 
                     <PrivateRoute>
@@ -45,11 +49,20 @@ function App() {
                   
                   <Route path='/register' element={ <Register></Register> }  ></Route>
                   <Route path='/login' element={ <Login></Login> } ></Route>
+                  
                   {/* nested route in dashboard*/}
-                  <Route path='/dashboard' element={ <DashboardPage></DashboardPage> } >
+                  <Route path='/dashboard' element={ 
+                      <PrivateRoute>
+                          <DashboardPage></DashboardPage>
+                      </PrivateRoute>
+                   } >
+
+                      <Route path='userhome' element={ <UserHome></UserHome> } ></Route>
+                      <Route path='adminhome' element={ <AdminHome></AdminHome>} ></Route>
                       <Route path='mycart' element={ <Mycart></Mycart> } ></Route>
                       <Route path='allusers' element={ <AllUsers></AllUsers> } ></Route>
                       <Route path='payment' element={ <Payment></Payment> } ></Route>
+                      
                       {/* admin route */}
                       <Route path='additem' element={
                         <AdminRoute>
@@ -62,6 +75,7 @@ function App() {
                           <ManageItems></ManageItems>
                         </AdminRoute>
                       } ></Route>
+                      
                   </Route>
                   
                 </Routes>
