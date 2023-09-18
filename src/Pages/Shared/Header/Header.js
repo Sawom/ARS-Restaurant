@@ -19,17 +19,35 @@ const Header = () => {
     }
     
     return (
-        <div className="navbar px-1 fixed z-10 bg-opacity-60 bg-black text-white">
+        <div className="navbar  mx-auto px-5 fixed z-10 bg-opacity-60 bg-black text-white">
+        
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
+
                 {/* page list link responsive */}
                 <ul tabIndex={0} className="menu menu-sm rounded  bg-opacity-60 bg-black dropdown-content mt-3 z-[1] p-2   ">
                     <li > <Link  to='/home'> <span className='text-white navColor'  > Home </span> </Link> </li>
                     <li> <Link  to='/ourmenu'> <span className='text-white navColor'  > Our Menu </span>  </Link> </li>
                     <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
+                    {
+                    user?.email ? 
+                    <div>
+                        {/* logout button and dashboard */}
+                        <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button>
+                        {/* admin hole admin er option r user hole tar option */}
+                        {
+                            isAdmin ?  <Link className='btn btn-ghost' to='/dashboard/adminhome' > <span className='text-white navColor' > Dashboard</span>  </Link>
+                            :
+                            <Link className='btn btn-ghost' to='/dashboard/userhome' >  <span className='text-white navColor'> Dashboard</span> </Link>
+                        }
+                       
+                    </div>
+                    :
+                    <Link className='btn btn-ghost' to='/login' >Login</Link>
+                   }
                 </ul>
                 </div>
                 <img src={logo} style={{width: '60px' ,text:'white'}} alt="" />
@@ -41,37 +59,36 @@ const Header = () => {
                     <li> <Link  to='/home'> <span className='text-white navColor'  > Home </span> </Link> </li>
                     <li> <Link  to='/ourmenu'> <span className='text-white navColor'  > Our Menu </span>  </Link> </li>
                     <li> <Link  to='/ourshop'> <span className='text-white navColor'  > Our Shop </span>  </Link> </li>
+                   <>
+                    {
+                    user?.email ? 
+                    <div className=''>
+                        {/* logout button and dashboard */}
+                        <button className='btn btn-ghost' onClick={logoutFunction} > <span className='text-white navColor' > Logout </span>  </button>
+                        {/* admin hole admin er option r user hole tar option */}
+                        {
+                            isAdmin ?  <Link className='btn btn-ghost' to='/dashboard/adminhome' > <span className='text-white navColor' > Dashboard </span> </Link>
+                            :
+                            <Link className='btn btn-ghost' to='/dashboard/userhome' > <span className='text-white navColor' > Dashboard </span> </Link>
+                        }
+                        
+                    </div>
+                    :
+                    <Link className='btn btn-ghost' to='/login' > <span className='text-white navColor' > Login </span> </Link>
+                }
+                   </>
                 </ul>
             </div>
             
             {/* add to cart */}
-            <li>
+            <li className='lg:inline hidden'>
                 <Link to="/">
-                    <button className="  gap-2 lg:inline hidden">
-                        
+                    <button className=" gap-2  ">
                         <div className="badge px-2 badge-secondary"> <FaShoppingCart></FaShoppingCart> +{cart?.length || 0 }</div>
                     </button>
                 </Link>
             </li>
             {/*  end */}
-            <div className='navbar-end' >
-                {
-                    user?.email ? 
-                    <div>
-                        {/* logout button and dashboard */}
-                        <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button>
-                        {/* admin hole admin er option r user hole tar option */}
-                        {
-                            isAdmin ?  <Link className='btn btn-ghost' to='/dashboard/adminhome' > Dashboard </Link>
-                            :
-                            <Link className='btn btn-ghost' to='/dashboard/userhome' > Dashboard </Link>
-                        }
-                        
-                    </div>
-                    :
-                    <Link className='btn btn-ghost' to='/login' >Login</Link>
-                }
-            </div>
             
             <Outlet></Outlet>
         </div>

@@ -23,6 +23,7 @@ import ManageItems from './Pages/Dashboard/ManageItems/ManageItems';
 import Payment from './Pages/Dashboard/Payment/Payment';
 import UserHome from './Pages/Dashboard/UserHome/UserHome' ;
 import AdminHome from './Pages/Dashboard/AdminHome/AdminHome';
+import UpdateItem from './Pages/Dashboard/UpdateItem/UpdateItem';
 
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ function App() {
                       <Route path='payment' element={ <Payment></Payment> } ></Route>
                       
                       {/* admin route */}
+                      {/* additem */}
                       <Route path='additem' element={
                         <AdminRoute>
                             <AddItem></AddItem>
@@ -73,6 +75,12 @@ function App() {
                       <Route path='manageitem' element={
                         <AdminRoute>
                           <ManageItems></ManageItems>
+                        </AdminRoute>
+                      } ></Route>
+                      {/* update item*/}
+                      <Route path='update' element={
+                        <AdminRoute>
+                          <UpdateItem></UpdateItem>
                         </AdminRoute>
                       } ></Route>
                       

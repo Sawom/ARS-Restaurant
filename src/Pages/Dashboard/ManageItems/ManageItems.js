@@ -3,6 +3,7 @@ import useMenu from '../../../Hooks/useMenu';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const ManageItems = () => {
     const [menu, loading , refetch] = useMenu();
@@ -82,7 +83,7 @@ const ManageItems = () => {
                                 </td>
                                 <td className="text-right">${item.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                   <Link to='/dashboard/update' > <button className="btn btn-ghost btn-xs">Edit</button> </Link> 
                                 </td>
                                 <td>
                                     <button className="btn btn-ghost bg-red-600  text-white" onClick={() => handleDeleteMenu(item)} ><FaTrashAlt></FaTrashAlt></button>

@@ -38,7 +38,6 @@ const DashboardPage = () => {
                     </> : <>
                         {/* user */}
                         <li> <Link to='/dashboard/userhome' > <FaHome></FaHome> User Home</Link></li>
-                        <li> <Link to='' > <FaCalendarAlt></FaCalendarAlt> Reservations </Link> </li>
                         <li> <Link to='/dashboard/payment' > <FaWallet></FaWallet> Payment </Link> </li>
                         <li className='flex'> <Link to='/dashboard/mycart'> <FaShoppingCart></FaShoppingCart> My Cart 
                             {/* cart er koyta item ache oita just dekhalam */}
