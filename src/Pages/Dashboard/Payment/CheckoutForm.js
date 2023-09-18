@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../Authentication/useAuth/useAuth';
-import './CheckoutForm.css';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = ({price, cart}) => {
     const stripe = useStripe();
@@ -22,7 +22,7 @@ const CheckoutForm = ({price, cart}) => {
                     setClientSecret(res.data.clientSecret);
                 })
         }
-    }, [price, axiosSecure])
+    }, [])
 
     // payment done howar pore cart er element shob gula remove kore dibe.
     const handleSubmit = async (event) => {
@@ -93,8 +93,6 @@ const CheckoutForm = ({price, cart}) => {
                     }
                 })
         }
-
-
     }
 
 
@@ -118,7 +116,7 @@ const CheckoutForm = ({price, cart}) => {
                         },
                     },
                     }}
-                />
+                required > </CardElement>
                 <button className='btn btn-outline btn-sm  border-4 mt-6' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
