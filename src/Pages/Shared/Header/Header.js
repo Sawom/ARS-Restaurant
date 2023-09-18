@@ -19,7 +19,7 @@ const Header = () => {
     }
     
     return (
-        <div className="navbar px-3 fixed z-10 bg-opacity-60 bg-black text-white">
+        <div className="navbar px-1 fixed z-10 bg-opacity-60 bg-black text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,9 +47,9 @@ const Header = () => {
             {/* add to cart */}
             <li>
                 <Link to="/">
-                    <button className="btn gap-2">
-                        <FaShoppingCart></FaShoppingCart>
-                        <div className="badge badge-secondary">+{cart?.length || 0 }</div>
+                    <button className="  gap-2 lg:inline hidden">
+                        
+                        <div className="badge px-2 badge-secondary"> <FaShoppingCart></FaShoppingCart> +{cart?.length || 0 }</div>
                     </button>
                 </Link>
             </li>
@@ -60,6 +60,7 @@ const Header = () => {
                     <div>
                         {/* logout button and dashboard */}
                         <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button>
+                        {/* admin hole admin er option r user hole tar option */}
                         {
                             isAdmin ?  <Link className='btn btn-ghost' to='/dashboard/adminhome' > Dashboard </Link>
                             :

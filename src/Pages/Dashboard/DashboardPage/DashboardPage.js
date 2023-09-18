@@ -52,8 +52,8 @@ const DashboardPage = () => {
                 {/* divider */}
                 <div className='divider' ></div>
                         <li><Link to="/"><FaHome></FaHome> Home</Link> </li>
-                        <li><Link to=""> Our Menu</Link></li>
-                        <li><Link to="">Order Food</Link></li>
+                        <li><Link to="/ourmenu"> Our Menu</Link></li>
+                        <li><Link to="/ourshop">Order Food</Link></li>
                 </ul>
             
             </div>
