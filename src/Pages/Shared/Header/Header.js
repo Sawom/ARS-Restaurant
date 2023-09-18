@@ -5,10 +5,12 @@ import { FaShoppingCart } from 'react-icons/fa';
 import './Header.css';
 import useAuth from '../../Authentication/useAuth/useAuth';
 import useCart from '../../../Hooks/useCart';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Header = () => {
     const {user, logoutUser} = useAuth();
-
+    // admin kina check korbo
+    const [isAdmin] = useAdmin();
     // cart er length ta header e dekhabo
     const [cart] = useCart();
 
@@ -58,7 +60,12 @@ const Header = () => {
                     <div>
                         {/* logout button and dashboard */}
                         <button className='btn btn-ghost' onClick={logoutFunction} > Logout </button>
-                        <Link className='btn btn-ghost' to='/dashboard' > Dashboard </Link>
+                        {
+                            isAdmin ?  <Link className='btn btn-ghost' to='/dashboard/adminhome' > Dashboard </Link>
+                            :
+                            <Link className='btn btn-ghost' to='/dashboard/userhome' > Dashboard </Link>
+                        }
+                        
                     </div>
                     :
                     <Link className='btn btn-ghost' to='/login' >Login</Link>
