@@ -4,9 +4,10 @@ import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
+// http://localhost:5000 base url. zeta axiosSecure e dea ache.
 const AllUsers = () => {
     // tanstack query diye data load kortechi data base theke. tanstack use kori cz ekhane refetch kora zay .
-    // zeta manually kora lage na. useQuery tanstack theke niche fetch korar jnno
+    // zeta manually kora lage na. useQuery tanstack theke nije fetch korar jnno
     // jwt diye secure korar somoy useAxiosSecure use na korar jnno bishal error khaichi.
     // ekhane jwt diye secure korar jonno 4ta kahini kora lage.
     // 
