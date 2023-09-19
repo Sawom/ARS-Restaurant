@@ -10,7 +10,7 @@ const AllUsers = () => {
     // jwt diye secure korar somoy useAxiosSecure use na korar jnno bishal error khaichi.
     // ekhane jwt diye secure korar jonno 4ta kahini kora lage.
     // 
-    const [axiosSecure] = useAxiosSecure(); //kahini> 1
+    const [axiosSecure] = useAxiosSecure(); //kahini 1>
     const {data: users = [], refetch } = useQuery(['users'], async() =>{
         //kahini 2> axiosSecure.get
         const res = await axiosSecure.get('/users')

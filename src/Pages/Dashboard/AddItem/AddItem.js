@@ -13,7 +13,6 @@ const AddItem = () => {
 
     // img upload function
     const onSubmit = data => {
-        
         const formData = new FormData();
         formData.append('image', data.image[0])
 
@@ -28,6 +27,7 @@ const AddItem = () => {
                 const {name, price, category, recipe} = data;
                 const newItem = {name, recipe, image:imgURL, category, price: parseFloat(price)  }
                 console.log(newItem)
+                // menu post method
                 axiosSecure.post('/menu', newItem)
                 .then(data => {
                     console.log('after posting new menu item', data.data)

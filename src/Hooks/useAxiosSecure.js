@@ -9,6 +9,7 @@ const useAxiosSecure = () => {
   const { logoutUser } = useAuth(); 
   const navigate = useNavigate(); 
 
+  // base url
   const axiosSecure = axios.create({
   baseURL: 'http://localhost:5000', 
 });
