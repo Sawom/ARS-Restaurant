@@ -41,7 +41,7 @@ const AllUsers = () => {
         })
     } // end make_admin
 
-    // user delete function (todo nijei kora lagbe)
+    // user delete function 
     const handleDeleteUser = (user) =>{
         Swal.fire({
             title: 'Are you sure?',
