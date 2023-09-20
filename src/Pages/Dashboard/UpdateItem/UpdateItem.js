@@ -18,7 +18,8 @@ const UpdateItem = () => {
     const [update, setUpdate] = useState({});
     const {id} = useParams();
 
-    // data load
+    // data load by single. ager data gula input e dekhabo
+    //  tai ekhane data load kortechi
     useEffect(()=>{
         fetch(`http://localhost:5000/menu/${id}`)
         .then(res => res.json())
@@ -35,26 +36,28 @@ const UpdateItem = () => {
         setUpdate(updatedItem);
     }
 
+    // update recipe details
+    const handleRecipeChange = event =>{
+        const updatedRecipe = event.target.value;
+        const updatedItem = {name: update.name, recipe: updatedRecipe, category: update.category , price: update.price };
+        setUpdate(updatedItem);
+    }
+
     // update category
     const handleCategoryChange = event =>{
         const updatedCategory = event.target.value;
-        const updatedItem = {name: update.name, category: updatedCategory, price: update.price, details: update.details };
+        const updatedItem = {name: update.name, recipe: update.recipe, category: updatedCategory, price: update.price };
         setUpdate(updatedItem);
     }
 
     // update price
     const handlePriceChange = event =>{
         const updatedPrice = event.target.value;
-        const updatedItem = {name: update.name, category: update.category, price: updatedPrice, details: update.details };
+        const updatedItem = {name: update.name, recipe: update.recipe, category: update.category , price: updatedPrice };
         setUpdate(updatedItem);
     }
 
-    // update details
-    const handleDetailsChange = event =>{
-        const updatedDetails = event.target.value;
-        const updatedItem = {name: update.name, category: update.category, price: update.price, details: updatedDetails};
-        setUpdate(updatedItem);
-    }
+    
     
     // update function
     const handleUpdate = (event) =>{
@@ -90,7 +93,7 @@ const UpdateItem = () => {
             <section className='text-center mb-10 ' > 
                 <p className='text-xl' > <span className=' py-4 border-y-4 uppercase' > Update  ITEM </span> </p>
                 <br />
-                <p>Update menu for : {update.name}  </p>
+                <p>Update menu for : <span className='font-bold'>{update.name}</span>   </p>
             </section>
             {/* update kortechi */}
             {/* form. react-hook-form diye kora eta */}
@@ -110,7 +113,7 @@ const UpdateItem = () => {
                             <span className="label-text font-semibold">Category*</span>
                         </label>
                         {/* select component daisy ui */}
-                        <select onChange={handleCategoryChange} defaultValue={update.category || ''} className="select select-bordered">
+                        <select onChange={handleCategoryChange} defaultValue='Pick One' className="select select-bordered">
                             <option disabled>Pick One</option>
                             <option>Pizza</option>
                             <option>Soup</option>
@@ -132,10 +135,10 @@ const UpdateItem = () => {
                     <label className="label">
                         <span className="label-text font-semibold">Recipe Details*</span>
                     </label>
-                    <textarea className="textarea textarea-bordered h-24" onChange={handleDetailsChange} defaultValue={update.details || ''} placeholder="Recipe Details" ></textarea>
+                    <textarea className="textarea textarea-bordered h-24" onChange={handleRecipeChange} defaultValue={update.details || ''} placeholder="Recipe Details" ></textarea>
                 </div>
                 {/* submit button */}
-                <button className="btn btn-outline  border-4 mt-6"  type="submit">Add Item</button>
+                <button className="btn btn-outline  border-4 mt-6"  type="submit">Update</button>
             </form>
         </div>
     );
