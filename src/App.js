@@ -78,7 +78,7 @@ function App() {
                         </AdminRoute>
                       } ></Route>
                       {/* update item*/}
-                      <Route path='update' element={
+                      <Route path='manageitem/update/:id' element={
                         <AdminRoute>
                           <UpdateItem></UpdateItem>
                         </AdminRoute>

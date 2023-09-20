@@ -83,7 +83,8 @@ const ManageItems = () => {
                                 </td>
                                 <td className="text-right">${item.price}</td>
                                 <td>
-                                   <Link to='/dashboard/update' > <button className="btn btn-ghost btn-xs">Edit</button> </Link> 
+                                    {/* edit button*/}
+                                   <Link to={`/dashboard/manageitem/update/${item._id}`} > <button className="btn btn-ghost btn-xs">Edit</button> </Link> 
                                 </td>
                                 <td>
                                     <button className="btn btn-ghost bg-red-600  text-white" onClick={() => handleDeleteMenu(item)} ><FaTrashAlt></FaTrashAlt></button>

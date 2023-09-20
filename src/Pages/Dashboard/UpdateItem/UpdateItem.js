@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {  useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
+
 
 const UpdateItem = () => {
     // axios diye data load korchi
@@ -16,14 +15,14 @@ const UpdateItem = () => {
     // })
 
     // update
-    const [update, setUpdate] = useState({name: ''});
-    const {userId} = useParams();
+    const [update, setUpdate] = useState({});
+    const {id} = useParams();
 
     // data load
     useEffect(()=>{
-        fetch(`http://localhost:5000/menu/${userId}`)
+        fetch(`http://localhost:5000/menu/${id}`)
         .then(res => res.json())
-        .then( data=> {
+        .then( data => {
             setUpdate(data)
             // console.log(data)
         })
@@ -32,7 +31,7 @@ const UpdateItem = () => {
     // update recipe name
     const handleNameChange = event =>{
         const updatedName = event.target.value;
-        const updatedItem = {name: updatedName, category: update.category, price: update.price, details: update.details };
+        const updatedItem = {name: updatedName, recipe: update.recipe, category: update.category, price: update.price };
         setUpdate(updatedItem);
     }
 
@@ -60,7 +59,7 @@ const UpdateItem = () => {
     // update function
     const handleUpdate = (event) =>{
         event.preventDefault();
-        const url = `http://localhost:5000/menu`;
+        const url = `http://localhost:5000/menu/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -101,7 +100,7 @@ const UpdateItem = () => {
                     <label className="label">
                         <span className="label-text font-semibold">Recipe name*</span>
                     </label>
-                    <input type="text" onChange={handleNameChange} defaultValue={update.name || ''} placeholder="Recipe name"   className="input input-bordered w-full " />
+                    <input type="text" name="name" onChange={handleNameChange} defaultValue={update.name || ''} placeholder="Recipe name"   className="input input-bordered w-full " />
                 </div>
                 {/* 2 div Category & price*/}
                 <div className='flex my-4'>
@@ -143,3 +142,9 @@ const UpdateItem = () => {
 };
 
 export default UpdateItem;
+
+// note
+// update route setup (bphoy pera khaichi xd)
+// app.js theke route change
+//  useParams() diye id nibo
+// manageItem theke edit button e link ta change hobe
