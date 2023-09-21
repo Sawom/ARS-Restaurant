@@ -7,7 +7,7 @@ const useMenu = ()=>{
 
     // // from database
     // useEffect(()=>{
-    //     fetch('http://localhost:5000/menu')
+    //     fetch('https://ars-restaurant-db.vercel.app/menu')
     //     .then(res => res.json())
     //     .then(data =>{
     //         setMenu(data);
@@ -19,11 +19,13 @@ const useMenu = ()=>{
     // axios use kori nai tai res.json() use kora lage.
     // axios use korle json e convert e kore dey tai json kora lage na
     // useQuery use korlam cz refetch kora lagbe pore tai.
+    
     const {data: menu = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['menu'],
+        // enabled: !loading,
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/menu');
-            return res.json()
+            const res = await fetch('https://ars-restaurant-db.vercel.app/menu');
+            return res.json();
         }
     })
 

@@ -6,8 +6,8 @@ import {FaRegListAlt} from 'react-icons/fa';
 
 const UserHome = () => {
     const {user} = useAuth();
-    const [cart,refetch] = useCart();
-    const total = cart.reduce((sum,item)=> item.price + sum, 0)
+    const [cart, refetch] = useCart();
+    const total = cart.reduce((sum,item)=> parseFloat(item.price + sum).toFixed(2), 0)
 
 
     return (

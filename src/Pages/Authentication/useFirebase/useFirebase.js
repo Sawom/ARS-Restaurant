@@ -28,7 +28,7 @@ const useFirebase = () => {
                 const loggedInUser = result.user;
                 // console.log(loggedInUser);
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://ars-restaurant-db.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -66,7 +66,7 @@ const useFirebase = () => {
         const unsubscribed = onAuthStateChanged(auth, currentUser=>{
                 if(currentUser){
                     setUser(currentUser);
-                    axios.post('http://localhost:5000/jwt', {email: currentUser.email})
+                    axios.post('https://ars-restaurant-db.vercel.app/jwt', {email: currentUser.email})
                     .then(data =>{
                         // console.log(data.data.token);
                         localStorage.setItem('access-token', data.data.token)

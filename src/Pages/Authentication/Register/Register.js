@@ -65,7 +65,7 @@ const Register = () => {
             // console.log(user);
             // user er shob info save korbo na. just email r password tai saveuser use korlam 
             const saveUser = {name: name, email: email}
-            fetch('http://localhost:5000/users', {
+            fetch('https://ars-restaurant-db.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

@@ -17,7 +17,7 @@ const BannerThree = () => {
                 {/* others */}
                 <div className='md:flex space-x-4'>
                     <div className='w-1/2' >
-                        <img  src={bannerImg} alt="" />
+                        <img className='w-full' src={bannerImg} alt="" />
                     </div>
                     <div className=" w-1/2">
                         <p className="uppercase text-2xl font-bold">Where can i get some?</p> <br />

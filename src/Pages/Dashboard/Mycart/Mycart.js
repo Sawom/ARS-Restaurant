@@ -23,7 +23,7 @@ const Mycart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`, {
+                fetch(`https://ars-restaurant-db.vercel.app/carts/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -44,7 +44,7 @@ const Mycart = () => {
 
     // 0 initial value. sum er sathe add kortechi
     // reduce method use korchi
-    const total = cart.reduce((sum,item)=> item.price + sum, 0)
+    const total = cart.reduce((sum,item)=> parseFloat(item.price + sum).toFixed(2), 0)
     
     return (
         <div className='container px-1'>

@@ -13,7 +13,7 @@ const Testimonials = () => {
 
     // from database
     useEffect(()=>{
-        fetch('http://localhost:5000/reviews')
+        fetch('https://ars-restaurant-db.vercel.app/reviews')
             .then(res=> res.json())
             .then( (data) => {
                 setReview(data)

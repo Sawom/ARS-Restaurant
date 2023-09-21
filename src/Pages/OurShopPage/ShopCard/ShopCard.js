@@ -14,10 +14,10 @@ const ShopCard = ({item}) => {
 
     // add to cart function. add to cart button e click korle database e zabe
     const handleAddToCart = (item) =>{
-        console.log(item);
+        // console.log(item);
         if(user && user.email){
             const cartItem = {menuItemId: _id, name, image, price, email: user.email}
-            fetch('http://localhost:5000/carts', {
+            fetch('https://ars-restaurant-db.vercel.app/carts', {
                 // POST dile database e zay
                 method: 'POST',
                 headers:{
@@ -45,8 +45,8 @@ const ShopCard = ({item}) => {
 
     return (
         <div>
-            <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                <figure><img src={image} alt="food" /></figure>
+            <div className="card card-compact w-full bg-base-100 shadow-xl">
+                <figure><img src={image} className='w-full' alt="food" /></figure>
                 <p className='absolute right-0 bg-black text-white mr-4 mt-4 px-4 ' > ${price} </p>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>

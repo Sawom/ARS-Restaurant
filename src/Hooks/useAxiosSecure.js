@@ -11,7 +11,7 @@ const useAxiosSecure = () => {
 
   // base url
   const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000', 
+  baseURL: 'https://ars-restaurant-db.vercel.app', 
 });
 
   // interceptors from axios
@@ -27,9 +27,10 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        if (error.response && (error.response.status === 401 || error.response.status === 403 )) {
           await logoutUser();
           navigate('/login');
+          // return
         }
         return Promise.reject(error);
       }

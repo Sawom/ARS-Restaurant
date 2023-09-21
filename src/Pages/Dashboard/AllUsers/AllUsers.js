@@ -4,7 +4,7 @@ import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
-// http://localhost:5000 base url. zeta axiosSecure e dea ache.
+// https://ars-restaurant-db.vercel.app base url. zeta axiosSecure e dea ache.
 const AllUsers = () => {
     // tanstack query diye data load kortechi data base theke. tanstack use kori cz ekhane refetch kora zay .
     // zeta manually kora lage na. useQuery tanstack theke nije fetch korar jnno
@@ -15,14 +15,14 @@ const AllUsers = () => {
     const {data: users = [], refetch } = useQuery(['users'], async() =>{
         //kahini 2> axiosSecure.get
         const res = await axiosSecure.get('/users')
-        //kahini 3> eta http://localhost:5000 base url. zeta axiosSecure e dea ache.
+        //kahini 3> eta https://ars-restaurant-db.vercel.app base url. zeta axiosSecure e dea ache.
         // to base url er part ta remove kore dite hobe
         return res.data ; // kahini 4> axios nijei json data kore dey
     })
 
     // make admin function
     const handleMakeAdmin = user =>{
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://ars-restaurant-db.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -53,7 +53,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then( (result) =>{
                 if(result.isConfirmed){
-                    fetch(`http://localhost:5000/users/${user._id}`, {
+                    fetch(`https://ars-restaurant-db.vercel.app/users/${user._id}`, {
                         method: 'DELETE'
                     } )
                     .then( res => res.json() )

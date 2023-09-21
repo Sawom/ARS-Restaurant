@@ -69,7 +69,7 @@ const CheckoutForm = ({price, cart}) => {
 
         if (confirmError) {
             // console.log(confirmError);
-            return
+            return;
         }
 
         // console.log('payment intent', paymentIntent)

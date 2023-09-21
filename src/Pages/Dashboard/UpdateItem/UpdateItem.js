@@ -21,7 +21,7 @@ const UpdateItem = () => {
     // data load by single. ager data gula input e dekhabo
     //  tai ekhane data load kortechi
     useEffect(()=>{
-        fetch(`http://localhost:5000/menu/${id}`)
+        fetch(`https://ars-restaurant-db.vercel.app/menu/${id}`)
         .then(res => res.json())
         .then( data => {
             setUpdate(data)
@@ -62,7 +62,7 @@ const UpdateItem = () => {
     // update function
     const handleUpdate = (event) =>{
         event.preventDefault();
-        const url = `http://localhost:5000/menu/${id}`;
+        const url = `https://ars-restaurant-db.vercel.app/menu/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
