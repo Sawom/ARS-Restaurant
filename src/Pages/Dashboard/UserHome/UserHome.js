@@ -12,14 +12,6 @@ const UserHome = () => {
 
     return (
         <div className='container '>
-            {/* <div className='mx-5 justify-evenly items-center'>
-                <h1 className='text-2xl '> Welcome <span className='text-blue-600'> {user.displayName}</span>  to User Home!</h1>
-                <h3 className='text-xl'> Total Order Food: {cart.length} & </h3>
-                <h3 className='text-xl mx-1'> Total price: ${total} only!</h3>
-                <Link to="/dashboard/mycart">
-                    <button className="btn btn-outline  border-4 mt-6"> <FaRegListAlt></FaRegListAlt>  view</button>
-                </Link>
-            </div> */}
             <h1 className='text-2xl mx-5'> Welcome <span className='text-blue-600'> {user.displayName}</span>  to User Home!</h1>
             <br />
             <div className="stats shadow place-items-center mx-5 gap-5">
