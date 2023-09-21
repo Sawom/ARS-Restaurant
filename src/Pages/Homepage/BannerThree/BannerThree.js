@@ -1,5 +1,6 @@
 import React from 'react';
-import './BannerThree.css'
+import './BannerThree.css';
+import {AiFillShopping} from 'react-icons/ai';
 import bannerImg from '../../../assets/home/featured.jpg';
 import { Link } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const BannerThree = () => {
                         <p className="uppercase text-2xl font-bold">Where can i get some?</p> <br />
                         <p>Indulge your taste buds at ARS Restaurant  Join us for a culinary adventure that will satisfy your cravings. Our talented chefs have crafted a diverse menu, featuring mouthwatering appetizers, hearty main courses.</p>
                         <Link to='/ourshop'>
-                            <button className="btn btn-outline text-white border-4 mt-6">Order Now</button>
+                            <button className="btn btn-outline text-white border-4 mt-6"> <AiFillShopping></AiFillShopping> Order Now</button>
                         </Link>
                     </div>
                 </div>

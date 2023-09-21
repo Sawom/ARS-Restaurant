@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Showitem from '../Showitem/Showitem';
+import {FaRegListAlt} from 'react-icons/fa';
 import useMenu from '../../../Hooks/useMenu';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const MenuItem = () => {
             {/* button */}
             <div className='text-center '>
                 <Link to='/ourmenu' >
-                    <button className="btn btn-outline  border-4 mt-6">View Full Menu</button>
+                    <button className="btn btn-outline  border-4 mt-6"> <FaRegListAlt></FaRegListAlt> View Full Menu</button>
                 </Link>
                 
             </div>

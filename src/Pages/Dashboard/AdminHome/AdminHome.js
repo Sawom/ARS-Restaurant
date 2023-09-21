@@ -20,7 +20,7 @@ const AdminHome = () => {
         <div className='container '>
             <h1 className='text-2xl mx-5'> Welcome <span className='text-blue-600'> {user.displayName}</span>  to Admin Home!</h1>
             {/* stats */}
-            <div className="stats shadow">
+            <div className="stats shadow ">
                 {/* revenue */}
                 <div className="stat place-items-center">
                     <div className="stat-title">Revenue</div>

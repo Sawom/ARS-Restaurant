@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {  useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
+import {RxUpdate} from 'react-icons/rx';
 
 const UpdateItem = () => {
     // axios diye data load korchi
@@ -101,7 +101,7 @@ const UpdateItem = () => {
                 {/*1. recipe name */}
                 <div className="form-control w-full mb-6">
                     <label className="label">
-                        <span className="label-text font-semibold">Recipe name*</span>
+                        <span className="label-text font-semibold">Recipe name</span>
                     </label>
                     <input type="text" name="name" onChange={handleNameChange} defaultValue={update.name || ''} placeholder="Recipe name"   className="input input-bordered w-full " />
                 </div>
@@ -110,7 +110,7 @@ const UpdateItem = () => {
                     {/* Category */}
                     <div className="form-control w-full mx-3">
                         <label className="label">
-                            <span className="label-text font-semibold">Category*</span>
+                            <span className="label-text font-semibold">Category</span>
                         </label>
                         {/* select component daisy ui */}
                         <select onChange={handleCategoryChange} defaultValue='Pick One' className="select select-bordered">
@@ -125,7 +125,7 @@ const UpdateItem = () => {
                     {/* price */}
                     <div className="form-control w-full ">
                         <label className="label">
-                            <span className="label-text font-semibold">Price*</span>
+                            <span className="label-text font-semibold">Price</span>
                         </label>
                         <input type="number" placeholder="Price" onChange={handlePriceChange} defaultValue={update.price || ''} className="input input-bordered w-full "  />
                     </div>
@@ -133,12 +133,12 @@ const UpdateItem = () => {
                 {/* 3 Recipe Details*/}
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text font-semibold">Recipe Details*</span>
+                        <span className="label-text font-semibold">Recipe Details</span>
                     </label>
                     <textarea className="textarea textarea-bordered h-24" onChange={handleRecipeChange} defaultValue={update.details || ''} placeholder="Recipe Details" ></textarea>
                 </div>
                 {/* submit button */}
-                <button className="btn btn-outline  border-4 mt-6"  type="submit">Update</button>
+                <button className="btn btn-outline  border-4 mt-6"  type="submit"> <RxUpdate></RxUpdate> Update</button>
             </form>
         </div>
     );

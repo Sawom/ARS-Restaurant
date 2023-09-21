@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../Authentication/useAuth/useAuth';
 import Swal from 'sweetalert2';
 import useCart from '../../../Hooks/useCart';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const ShopCard = ({item}) => {
     const{name,recipe,image,category,price, _id} = item;
@@ -11,7 +12,7 @@ const ShopCard = ({item}) => {
     //  ta update korar jonno
     const [,refetch] = useCart()
 
-    // add to cart function. att to cart button e click korle database e zabe
+    // add to cart function. add to cart button e click korle database e zabe
     const handleAddToCart = (item) =>{
         console.log(item);
         if(user && user.email){
@@ -51,7 +52,7 @@ const ShopCard = ({item}) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{recipe}</p>
                     <div className="card-actions justify-end">
-                         <button onClick={ ()=> handleAddToCart(item) } className="btn btn-outline  border-4 mt-6">Add To Cart</button>
+                         <button onClick={ ()=> handleAddToCart(item) } className="btn btn-outline  border-4 mt-6"> <FaShoppingCart></FaShoppingCart> Add To Cart</button>
                     </div>
                 </div>
             </div>

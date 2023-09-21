@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from "sweetalert2";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import {AiFillFolderAdd} from 'react-icons/ai';
 
 const AddItem = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -103,7 +104,7 @@ const AddItem = () => {
                     <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered file-input-ghost w-full "  />
                 </div>
                 {/* submit button */}
-                <button className="btn btn-outline  border-4 mt-6"  type="submit">Add Item</button>
+                <button className="btn btn-outline  border-4 mt-6"  type="submit"> <AiFillFolderAdd></AiFillFolderAdd> Add Item</button>
             </form>
         </div>
     );
