@@ -45,6 +45,7 @@ const CheckoutForm = ({price, cart}) => {
         if (error) {
             // console.log('error', error)
             setCardError(error.message);
+            return
         }
         else {
             setCardError('');
@@ -68,6 +69,7 @@ const CheckoutForm = ({price, cart}) => {
 
         if (confirmError) {
             // console.log(confirmError);
+            return
         }
 
         // console.log('payment intent', paymentIntent)
