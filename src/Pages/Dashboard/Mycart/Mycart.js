@@ -3,9 +3,13 @@ import useCart from '../../../Hooks/useCart';
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import useAuth from '../../Authentication/useAuth/useAuth';
+import {FaDollarSign} from 'react-icons/fa';
+
 
 const Mycart = () => {
     const [cart,refetch] = useCart();
+    const {user} = useAuth();
 
     // ekhane item just ekta parameter. zeta diye delete korbo. onno nameo hoite pare parameter.
     const handleDelete = (item) => {
@@ -44,11 +48,12 @@ const Mycart = () => {
     
     return (
         <div className='container px-1'>
+            <h1 className='text-2xl mx-5'> <span className='text-blue-600'> {user.displayName}</span> , here is your order. Please pay to confirm order.</h1>
             <div className='font-semibold h-[80px] flex justify-evenly items-center'>
                 <h3 className='text-xl'> Total Items: {cart.length} & </h3>
                 <h3 className='text-xl mx-1'> Total price: ${total} </h3>
                 <Link to="/dashboard/payment">
-                    <button className="btn btn-outline  border-4 mt-6">Pay</button>
+                    <button className="btn btn-outline  border-4 mt-6"> <FaDollarSign></FaDollarSign> Pay</button>
                 </Link>
             </div>
         

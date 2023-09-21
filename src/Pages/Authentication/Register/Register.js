@@ -5,6 +5,8 @@ import useAuth from '../useAuth/useAuth';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { FaCashRegister } from 'react-icons/fa';
+
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -171,7 +173,7 @@ const Register = () => {
                             <input type="password" onBlur={handleConfirmpass} name="password2" placeholder="retype password" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
-                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Register</button>
+                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn"> <FaCashRegister></FaCashRegister> Register</button>
                             </div>
                             <p>Already registered? <Link to='/login'> <span className='font-bold text-primary' >Go to LogIn</span>  </Link> </p>
                             <br />

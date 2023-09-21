@@ -4,6 +4,9 @@ import { Link, useNavigate  } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { BiSolidLogIn } from 'react-icons/bi';
+import { FaGoogle } from 'react-icons/fa';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -125,14 +128,14 @@ const Login = () => {
                             <input  type="password" onBlur={handlePassword}  name="password" placeholder="password" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
-                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Login</button>
+                                <button style={{backgroundColor: '#D1A054', color:'white'}} className="btn"> <BiSolidLogIn></BiSolidLogIn> Login</button>
                             </div>
                             {/* error */}
                             <p className='text-red-600' > {error} </p>
                             <p>New here? <Link to='/register'> <span className='font-bold text-primary' >Create a New Account</span>  </Link> </p>
                             <p className='mx-auto' >Or sign in with</p>
                            {/* google login button */}
-                           <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn">Sign in With Google</button>
+                           <button onClick={handleGoogleSignIn} style={{backgroundColor: '#D1A054', color:'white'}} className="btn"> <FaGoogle></FaGoogle> Sign in With Google</button>
                            {/* reset password */}
                             <p >Forgot password? <button onClick={resetPassword} className='btn btn-link font-bold text-primary ' style={{textDecoration: 'none'}} > Reset Password </button>  </p>
                         </form>

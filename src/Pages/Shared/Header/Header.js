@@ -82,7 +82,7 @@ const Header = () => {
             
             {/* add to cart */}
             <li className='lg:inline hidden'>
-                <Link to="/">
+                <Link to="/ourshop">
                     <button className=" gap-2  ">
                         <div className="badge px-2 badge-secondary"> <FaShoppingCart></FaShoppingCart> +{cart?.length || 0 }</div>
                     </button>

@@ -24,6 +24,7 @@ import Payment from './Pages/Dashboard/Payment/Payment';
 import UserHome from './Pages/Dashboard/UserHome/UserHome' ;
 import AdminHome from './Pages/Dashboard/AdminHome/AdminHome';
 import UpdateItem from './Pages/Dashboard/UpdateItem/UpdateItem';
+import NotFound from './Pages/NotFound/NotFound';
 
 
 const queryClient = new QueryClient();
@@ -85,7 +86,8 @@ function App() {
                       } ></Route>
                       
                   </Route>
-                  
+                  {/* 404 not found. eta shobar last e dite hoy */}
+                  <Route path='*' element={ <NotFound></NotFound> } ></Route>
                 </Routes>
                 <Footer></Footer>
               </BrowserRouter>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../Authentication/useAuth/useAuth';
 import Swal from 'sweetalert2';
+import {FaDollarSign} from 'react-icons/fa';
 
 const CheckoutForm = ({price, cart}) => {
     const stripe = useStripe();
@@ -118,7 +119,7 @@ const CheckoutForm = ({price, cart}) => {
                     }}
                 required > </CardElement>
                 <button className='btn btn-outline btn-sm  border-4 mt-6' type="submit" disabled={!stripe || !clientSecret || processing}>
-                    Pay
+                    <FaDollarSign></FaDollarSign> Pay
                 </button>
             </form> 
             {/* show error */}
