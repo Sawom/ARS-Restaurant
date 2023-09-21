@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Showitem from '../Showitem/Showitem';
 import useMenu from '../../../Hooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const MenuItem = () => {
     const[menu] = useMenu([]);
@@ -25,7 +26,10 @@ const MenuItem = () => {
             </div>
             {/* button */}
             <div className='text-center '>
-                <button className="btn btn-outline  border-4 mt-6">View Full Menu</button>
+                <Link to='/ourmenu' >
+                    <button className="btn btn-outline  border-4 mt-6">View Full Menu</button>
+                </Link>
+                
             </div>
             
             

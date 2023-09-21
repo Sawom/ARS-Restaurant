@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaUtensils, FaBook, FaUsers } from 'react-icons/fa';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { FaShoppingCart, FaWallet, FaHome, FaUtensils, FaUsers } from 'react-icons/fa';
+import {AiFillShopping} from 'react-icons/ai';
+import { Link, Outlet } from 'react-router-dom';
 import useCart from '../../../Hooks/useCart';
 import useAdmin from '../../../Hooks/useAdmin';
 
@@ -51,8 +52,8 @@ const DashboardPage = () => {
                 {/* divider */}
                 <div className='divider' ></div>
                         <li><Link to="/"><FaHome></FaHome> Home</Link> </li>
-                        <li><Link to="/ourmenu"> Our Menu</Link></li>
-                        <li><Link to="/ourshop">Order Food</Link></li>
+                        <li><Link to="/ourmenu"> <FaUtensils></FaUtensils> Our Menu</Link></li>
+                        <li><Link to="/ourshop"> <AiFillShopping></AiFillShopping> Order Food</Link></li>
                 </ul>
             
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './BannerThree.css'
 import bannerImg from '../../../assets/home/featured.jpg';
+import { Link } from 'react-router-dom';
 
 const BannerThree = () => {
     return (
@@ -20,7 +21,9 @@ const BannerThree = () => {
                     <div className=" w-1/2">
                         <p className="uppercase text-2xl font-bold">Where can i get some?</p> <br />
                         <p>Indulge your taste buds at ARS Restaurant  Join us for a culinary adventure that will satisfy your cravings. Our talented chefs have crafted a diverse menu, featuring mouthwatering appetizers, hearty main courses.</p>
-                        <button className="btn btn-outline text-white border-4 mt-6">Order Now</button>
+                        <Link to='/ourshop'>
+                            <button className="btn btn-outline text-white border-4 mt-6">Order Now</button>
+                        </Link>
                     </div>
                 </div>
                 
